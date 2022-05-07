@@ -34,7 +34,7 @@ document.getElementById('download').addEventListener('click', downloadTxt);
 function upload() {
      let fileToLoad = document.getElementById("fileToLoad").files[0];
      let fileReader = new FileReader();
-     fileReader.onload = function(fileLoadedEvent) {
+     fileReader.onload = function (fileLoadedEvent) {
           let textFromFileLoaded = fileLoadedEvent.target.result;
           uploadedData = textFromFileLoaded;
           unpackedDataIndex = 0;
@@ -46,7 +46,7 @@ function upload() {
 }
 
 function unpileUploadedData() {
-     if(uploadedData.indexOf(",") != -1) {
+     if (uploadedData.indexOf(",") != -1) {
           unpackedData[unpackedDataIndex] = uploadedData.substring(0, uploadedData.indexOf(",\n,"));
           uploadedData = uploadedData.substring(uploadedData.indexOf(",\n,") + 3 /*length here maybe?*/ );
           unpackedDataIndex++;
@@ -77,26 +77,26 @@ function initializeChanges() {
      // logo
      // logoAcceptable
      // imageSet
-     if(logoAcceptable == true) {
+     if (logoAcceptable == true) {
           $("#preview-body-header-logo").attr("src", logo);
           $("#text-output1").html("<a href='" + logo + "' target='_blank' style='text-decoration-color: white; color: white;' title='View current logo'>" + logo + "</a>");
           $("#text-output1 a").css("font-family", "Poppins, sans-serif").css("font-weight", "400");
-     } else if(logoAcceptable == false) {
+     } else if (logoAcceptable == false) {
           $("#text-output1").html("Not Selected");
      }
      // websiteNameSet
      // websiteName
      $("#preview-body-header-title").html(websiteName);
-     if(websiteNameSet == true) {
+     if (websiteNameSet == true) {
           $("#text-output3").html(websiteName);
-     } else if(websiteNameSet == false) {
+     } else if (websiteNameSet == false) {
           $("#text-output3").html("Not Set");
      }
      // headerBorder
-     if(headerBorder == "enabled") {
+     if (headerBorder == "enabled") {
           $("#preview-body-header").css("border-bottom", "1px black solid");
           $("#text-output2").html("Enabled");
-     } else if(headerBorder == "disabled") {
+     } else if (headerBorder == "disabled") {
           $("#preview-body-header").css("border-bottom", "none");
           $("#text-output2").html("Disabled");
      }
@@ -124,7 +124,7 @@ function returnToTop() {
 }
 returnToTop();
 //Execute on page load, so styling doesn't mess up depending on position of scroll
-$(".header-item").click(function() {
+$(".header-item").click(function () {
      let headerItemID = $(this).attr("id");
      let itemNum = parseInt(headerItemID.substring(headerItemID.length - 1, headerItemID.length));
      $(".header-item").css("background-color", "transparent");
@@ -133,7 +133,7 @@ $(".header-item").click(function() {
      $(".content").css("visibility", "hidden");
      selectVis(0);
      removeChilds();
-     switch(itemNum) {
+     switch (itemNum) {
           case 1:
                displayMenu("style-content");
                break;
@@ -163,7 +163,7 @@ function displayMenu(id) {
 function displaySelections(event) {
      removeChilds();
      selectVis(1);
-     if(event == "output1") {
+     if (event == "output1") {
           //Header Logo
           let buttonContainer = document.createElement("input");
           $(buttonContainer).addClass("selections-button JS-REMOVABLE");
@@ -172,17 +172,17 @@ function displaySelections(event) {
           $(buttonContainer).attr("placeholder", "Type URL Here");
           $(buttonContainer).attr("type", "text");
           buttonContainer.id = "logo-input-box";
-          if(imageSet == true) {
+          if (imageSet == true) {
                $(buttonContainer).val(logo);
           }
-          $(buttonContainer).on("input", function() {
-               if($(buttonContainer).val().length >= 200) {
+          $(buttonContainer).on("input", function () {
+               if ($(buttonContainer).val().length >= 200) {
                     $(buttonContainer).css("font-size", "100%");
                } else {
                     $(buttonContainer).css("font-size", 300 - $(buttonContainer).val().length + "%");
                }
                //Error detection (only allowing for .png, .jpg, .jpeg, and .gif)
-               if($(buttonContainer).val().substring($(buttonContainer).val().length - 4, $(buttonContainer).val().length) == ".png" || $(buttonContainer).val().substring($(buttonContainer).val().length - 4, $(buttonContainer).val().length) == ".jpg" || $(buttonContainer).val().substring($(buttonContainer).val().length - 5, $(buttonContainer).val().length) == ".jpeg" || $(buttonContainer).val().substring($(buttonContainer).val().length - 4, $(buttonContainer).val().length) == ".gif") {
+               if ($(buttonContainer).val().substring($(buttonContainer).val().length - 4, $(buttonContainer).val().length) == ".png" || $(buttonContainer).val().substring($(buttonContainer).val().length - 4, $(buttonContainer).val().length) == ".jpg" || $(buttonContainer).val().substring($(buttonContainer).val().length - 5, $(buttonContainer).val().length) == ".jpeg" || $(buttonContainer).val().substring($(buttonContainer).val().length - 4, $(buttonContainer).val().length) == ".gif") {
                     logoAcceptable = true;
                } else {
                     logoAcceptable = false;
@@ -195,13 +195,13 @@ function displaySelections(event) {
           $(submitButton).attr("onclick", "getLogo()");
           submitButton.id = "submit-button";
           $("#selections").append(submitButton);
-     } else if(event == "output2") {
+     } else if (event == "output2") {
           //Header-Border
           let buttonContainer = document.createElement("div");
           $(buttonContainer).addClass("selections-button centered-selections-button JS-REMOVABLE");
           $(buttonContainer).css("width", "calc((100% - 10%) / 2)")
           $(buttonContainer).html("Disable");
-          $(buttonContainer).click(function() {
+          $(buttonContainer).click(function () {
                headerBorder = "disabled";
                $(buttonContainer).addClass("active-selections-button");
                $(buttonContainer2).removeClass("active-selections-button");
@@ -211,7 +211,7 @@ function displaySelections(event) {
           $(buttonContainer2).addClass("selections-button centered-selections-button JS-REMOVABLE");
           $(buttonContainer2).css("width", "calc((100% - 10%) / 2)")
           $(buttonContainer2).html("Enable");
-          $(buttonContainer2).click(function() {
+          $(buttonContainer2).click(function () {
                headerBorder = "enabled";
                $(buttonContainer2).addClass("active-selections-button");
                $(buttonContainer).removeClass("active-selections-button");
@@ -224,7 +224,7 @@ function displaySelections(event) {
           $(submitButton).attr("onclick", "setHeaderBorder()");
           submitButton.id = "submit-button";
           $("#selections").append(submitButton);
-     } else if(event == "output3") {
+     } else if (event == "output3") {
           //Website Name
           let buttonContainer = document.createElement("input");
           $(buttonContainer).addClass("selections-button JS-REMOVABLE");
@@ -234,7 +234,7 @@ function displaySelections(event) {
           $(buttonContainer).attr("type", "text");
           buttonContainer.id = "website-name-input-box";
           $("#selections").append(buttonContainer);
-          if(websiteNameSet == true) {
+          if (websiteNameSet == true) {
                $(buttonContainer).val(websiteName);
           }
           let submitButton = document.createElement("div");
@@ -243,13 +243,13 @@ function displaySelections(event) {
           $(submitButton).attr("onclick", "setWebsiteName()");
           submitButton.id = "submit-button";
           $("#selections").append(submitButton);
-     } else if(event == "output4") {
+     } else if (event == "output4") {
           //Header Font
           let buttonContainer = document.createElement("div");
           $(buttonContainer).addClass("selections-button centered-selections-button JS-REMOVABLE");
           $(buttonContainer).css("width", "calc((100% - 10%) / 6)")
           $(buttonContainer).html("Montserrat");
-          $(buttonContainer).click(function() {
+          $(buttonContainer).click(function () {
                headerFontVal = "'Montserrat', sans-serif";
                headerFont = "Montserrat";
                $(buttonContainer).addClass("active-selections-button");
@@ -264,7 +264,7 @@ function displaySelections(event) {
           $(buttonContainer2).addClass("selections-button centered-selections-button JS-REMOVABLE");
           $(buttonContainer2).css("width", "calc((100% - 10%) / 6)")
           $(buttonContainer2).html("Overpass");
-          $(buttonContainer2).click(function() {
+          $(buttonContainer2).click(function () {
                headerFontVal = "'Overpass', sans-serif";
                headerFont = "Overpass";
                $(buttonContainer2).addClass("active-selections-button");
@@ -279,7 +279,7 @@ function displaySelections(event) {
           $(buttonContainer3).addClass("selections-button centered-selections-button JS-REMOVABLE");
           $(buttonContainer3).css("width", "calc((100% - 10%) / 6)")
           $(buttonContainer3).html("Tulpen One");
-          $(buttonContainer3).click(function() {
+          $(buttonContainer3).click(function () {
                headerFontVal = "'Tulpen One', cursive";
                headerFont = "Tulpen One";
                $(buttonContainer3).addClass("active-selections-button");
@@ -294,7 +294,7 @@ function displaySelections(event) {
           $(buttonContainer4).addClass("selections-button centered-selections-button JS-REMOVABLE");
           $(buttonContainer4).css("width", "calc((100% - 10%) / 6)")
           $(buttonContainer4).html("Kristi");
-          $(buttonContainer4).click(function() {
+          $(buttonContainer4).click(function () {
                headerFontVal = "'Kristi', cursive";
                headerFont = "Kristi";
                $(buttonContainer4).addClass("active-selections-button");
@@ -309,7 +309,7 @@ function displaySelections(event) {
           $(buttonContainer5).addClass("selections-button centered-selections-button JS-REMOVABLE");
           $(buttonContainer5).css("width", "calc((100% - 10%) / 6)")
           $(buttonContainer5).html("Abel");
-          $(buttonContainer5).click(function() {
+          $(buttonContainer5).click(function () {
                headerFontVal = "'Abel', sans-serif";
                headerFont = "Abel";
                $(buttonContainer5).addClass("active-selections-button");
@@ -324,7 +324,7 @@ function displaySelections(event) {
           $(buttonContainer6).addClass("selections-button centered-selections-button JS-REMOVABLE");
           $(buttonContainer6).css("width", "calc((100% - 10%) / 6)")
           $(buttonContainer6).html("Poppins");
-          $(buttonContainer6).click(function() {
+          $(buttonContainer6).click(function () {
                headerFontVal = "'Poppins', sans-serif";
                headerFont = "Poppins";
                $(buttonContainer6).addClass("active-selections-button");
@@ -336,8 +336,8 @@ function displaySelections(event) {
           });
           buttonContainer6.id = "header-font-box6";
           $("#selections").append(buttonContainer).append(buttonContainer2).append(buttonContainer3).append(buttonContainer4).append(buttonContainer5).append(buttonContainer6);
-          for(i = 1; i <= 6; i++) {
-               if(i == 1) {
+          for (i = 1; i <= 6; i++) {
+               if (i == 1) {
                     $(buttonContainer).css("font-size", "2vw");
                } else {
                     $("#header-font-box" + i).css("font-size", "2vw");
@@ -349,7 +349,7 @@ function displaySelections(event) {
           $(submitButton).attr("onclick", "setFont('header')");
           submitButton.id = "submit-button";
           $("#selections").append(submitButton);
-     } else if(event == "output5") {
+     } else if (event == "output5") {
           //Header Title Color
           let buttonContainer = document.createElement("input");
           $(buttonContainer).addClass("selections-button JS-REMOVABLE");
@@ -359,7 +359,7 @@ function displaySelections(event) {
           $(buttonContainer).attr("type", "text");
           buttonContainer.id = "header-title-color-input-box";
           $("#selections").append(buttonContainer);
-          if(headerTitleColorSet == true) {
+          if (headerTitleColorSet == true) {
                $(buttonContainer).val(headerTitleColor);
           }
           let submitButton = document.createElement("div");
@@ -368,13 +368,13 @@ function displaySelections(event) {
           $(submitButton).attr("onclick", "checkColorValidity($('#header-title-color-input-box').val(), 'header-title-color')");
           submitButton.id = "submit-button";
           $("#selections").append(submitButton);
-     } else if(event == "output6") {
+     } else if (event == "output6") {
           //Header-Border
           let buttonContainer = document.createElement("div");
           $(buttonContainer).addClass("selections-button centered-selections-button JS-REMOVABLE");
           $(buttonContainer).css("width", "calc((100% - 10%) / 2)")
           $(buttonContainer).html("Disable");
-          $(buttonContainer).click(function() {
+          $(buttonContainer).click(function () {
                headerTitle = "disabled";
                $(buttonContainer).addClass("active-selections-button");
                $(buttonContainer2).removeClass("active-selections-button");
@@ -384,7 +384,7 @@ function displaySelections(event) {
           $(buttonContainer2).addClass("selections-button centered-selections-button JS-REMOVABLE");
           $(buttonContainer2).css("width", "calc((100% - 10%) / 2)")
           $(buttonContainer2).html("Enable");
-          $(buttonContainer2).click(function() {
+          $(buttonContainer2).click(function () {
                headerTitle = "enabled";
                $(buttonContainer2).addClass("active-selections-button");
                $(buttonContainer).removeClass("active-selections-button");
@@ -397,13 +397,13 @@ function displaySelections(event) {
           $(submitButton).attr("onclick", "setHeaderTitleStatus()");
           submitButton.id = "submit-button";
           $("#selections").append(submitButton);
-     } else if(event == "output7") {
+     } else if (event == "output7") {
           //Body Background Type
           let buttonContainer = document.createElement("div");
           $(buttonContainer).addClass("selections-button centered-selections-button JS-REMOVABLE");
           $(buttonContainer).css("width", "calc((100% - 10%) / 3)")
           $(buttonContainer).html("Solid Color");
-          $(buttonContainer).click(function() {
+          $(buttonContainer).click(function () {
                bodyBackgroundType = "solid";
                $(buttonContainer).addClass("active-selections-button");
                $(buttonContainer2).removeClass("active-selections-button");
@@ -414,7 +414,7 @@ function displaySelections(event) {
           $(buttonContainer2).addClass("selections-button centered-selections-button JS-REMOVABLE");
           $(buttonContainer2).css("width", "calc((100% - 10%) / 3)")
           $(buttonContainer2).html("Gradient");
-          $(buttonContainer2).click(function() {
+          $(buttonContainer2).click(function () {
                bodyBackgroundType = "gradient";
                $(buttonContainer2).addClass("active-selections-button");
                $(buttonContainer).removeClass("active-selections-button");
@@ -425,7 +425,7 @@ function displaySelections(event) {
           $(buttonContainer3).addClass("selections-button centered-selections-button JS-REMOVABLE");
           $(buttonContainer3).css("width", "calc((100% - 10%) / 3)")
           $(buttonContainer3).html("Image");
-          $(buttonContainer3).click(function() {
+          $(buttonContainer3).click(function () {
                bodyBackgroundType = "image";
                $(buttonContainer3).addClass("active-selections-button");
                $(buttonContainer).removeClass("active-selections-button");
@@ -439,15 +439,15 @@ function displaySelections(event) {
           $(submitButton).attr("onclick", "setBodyBackgroundType()");
           submitButton.id = "submit-button";
           $("#selections").append(submitButton);
-     } else if(event == "output9") {
+     } else if (event == "output9") {
           //Body Text
           let buttonContainer = document.createElement("input");
           $(buttonContainer).addClass("selections-button JS-REMOVABLE");
           $(buttonContainer).css("width", "calc((100% - 10%) / 1)")
-          if(bodyText != 'Welcome to your demo store!') {
+          if (bodyText != 'Welcome to your demo store!') {
                $(buttonContainer).html(bodyText);
           } else {
-          $(buttonContainer).html("");
+               $(buttonContainer).html("");
           }
           $(buttonContainer).attr("placeholder", "Type Text Here");
           $(buttonContainer).attr("type", "text");
@@ -459,15 +459,15 @@ function displaySelections(event) {
           $(submitButton).attr("onclick", "setText('text')");
           submitButton.id = "submit-button";
           $("#selections").append(submitButton);
-     } else if(event == "output10") {
+     } else if (event == "output10") {
           //Body Subtext
           let buttonContainer = document.createElement("input");
           $(buttonContainer).addClass("selections-button JS-REMOVABLE");
           $(buttonContainer).css("width", "calc((100% - 10%) / 1)")
-          if(bodySubtext != 'You can customize nearly anything you wish by heading over to the Customize Styling section and Store Properties tabs in the menu. This body of text is called the "Body Subtext" in the Customize Styling tab, at which can be edited to whatever you would like. Happy editing!') {
+          if (bodySubtext != 'You can customize nearly anything you wish by heading over to the Customize Styling section and Store Properties tabs in the menu. This body of text is called the "Body Subtext" in the Customize Styling tab, at which can be edited to whatever you would like. Happy editing!') {
                $(buttonContainer).html(bodySubtext);
           } else {
-          $(buttonContainer).html("");
+               $(buttonContainer).html("");
           }
           $(buttonContainer).attr("placeholder", "Type Text Here");
           $(buttonContainer).attr("type", "text");
@@ -483,12 +483,12 @@ function displaySelections(event) {
 }
 
 function selectVis(param) {
-     if(param == 1) {
+     if (param == 1) {
           $("#selections").css("opacity", "100%");
           $("#selections").css("visibility", "visible");
           $("#selections").css("bottom", "0px");
           $("#style-content").css("height", "calc(100% - 100px)");
-     } else if(param == 0) {
+     } else if (param == 0) {
           $("#selections").css("opacity", "0%");
           $("#selections").css("visibility", "hidden");
           $("#selections").css("bottom", "-100px");
@@ -503,18 +503,18 @@ let logoAllowed = true;
 let logoAmount = 0;
 
 function getLogo() {
-     if(logoAcceptable == false) {
-          if(logoAllowed == true) {
+     if (logoAcceptable == false) {
+          if (logoAllowed == true) {
                logoAllowed = false;
                $("#submit-button").removeClass("submit-button");
                $("#submit-button").addClass("submit-button-alt");
-               let interval = setInterval(function() {
-                    if(logoAmount % 2 == 0) {
+               let interval = setInterval(function () {
+                    if (logoAmount % 2 == 0) {
                          $("#submit-button").css("background-color", "red");
                     } else {
                          $("#submit-button").css("background-color", "white");
                     }
-                    if(logoAmount == 5) {
+                    if (logoAmount == 5) {
                          $("#submit-button").css("background-color", "rgb(0, 162, 255)");
                          $("#submit-button").removeClass("submit-button-alt");
                          $("#submit-button").addClass("submit-button");
@@ -525,7 +525,7 @@ function getLogo() {
                     logoAmount++;
                }, 200);
           }
-     } else if(logoAcceptable == true) {
+     } else if (logoAcceptable == true) {
           //Add the logo to the website
           //Remove added elements from the selections menu
           selectVis(0);
@@ -539,10 +539,10 @@ function getLogo() {
 }
 
 function setHeaderBorder() {
-     if(headerBorder == "enabled") {
+     if (headerBorder == "enabled") {
           $("#preview-body-header").css("border-bottom", "1px black solid");
           $("#text-output2").html("Enabled");
-     } else if(headerBorder == "disabled") {
+     } else if (headerBorder == "disabled") {
           $("#preview-body-header").css("border-bottom", "none");
           $("#text-output2").html("Disabled");
      }
@@ -552,18 +552,18 @@ let websiteNameAllowed = true;
 let websiteNameAmount = 0;
 
 function setWebsiteName() {
-     if($("#website-name-input-box").val().length <= 2) {
-          if(websiteNameAllowed == true) {
+     if ($("#website-name-input-box").val().length <= 2) {
+          if (websiteNameAllowed == true) {
                websiteNameAllowed = false;
                $("#submit-button").removeClass("submit-button");
                $("#submit-button").addClass("submit-button-alt");
-               let interval = setInterval(function() {
-                    if(websiteNameAmount % 2 == 0) {
+               let interval = setInterval(function () {
+                    if (websiteNameAmount % 2 == 0) {
                          $("#submit-button").css("background-color", "red");
                     } else {
                          $("#submit-button").css("background-color", "white");
                     }
-                    if(websiteNameAmount == 5) {
+                    if (websiteNameAmount == 5) {
                          $("#submit-button").css("background-color", "rgb(0, 162, 255)");
                          $("#submit-button").removeClass("submit-button-alt");
                          $("#submit-button").addClass("submit-button");
@@ -586,7 +586,7 @@ function setWebsiteName() {
 }
 
 function setFont(element) {
-     if(element == "header") {
+     if (element == "header") {
           $("#text-output4").html(headerFont);
           $("#preview-body-header-title").css("font-family", headerFontVal);
      } //Other fonts in else statements
@@ -600,21 +600,21 @@ let colorPass = false;
 function checkColorValidity(inputColor, element) {
      let acceptedCharacters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"];
      //Check if hex syntax is correct
-     for(i = 1; i < inputColor.length; i++) {
-          if(!acceptedCharacters.includes(inputColor.substring(i, i + 1)) || inputColor.substring(0, 1) != "#" || inputColor.length != 7) {
+     for (i = 1; i < inputColor.length; i++) {
+          if (!acceptedCharacters.includes(inputColor.substring(i, i + 1)) || inputColor.substring(0, 1) != "#" || inputColor.length != 7) {
                //At any point, the hex is incorrect:
                colorPass = false;
-               if(colorAllowed == true) {
+               if (colorAllowed == true) {
                     colorAllowed = false;
                     $("#submit-button").removeClass("submit-button");
                     $("#submit-button").addClass("submit-button-alt");
-                    let interval = setInterval(function() {
-                         if(colorAmount % 2 == 0) {
+                    let interval = setInterval(function () {
+                         if (colorAmount % 2 == 0) {
                               $("#submit-button").css("background-color", "red");
                          } else {
                               $("#submit-button").css("background-color", "white");
                          }
-                         if(colorAmount == 5) {
+                         if (colorAmount == 5) {
                               $("#submit-button").css("background-color", "rgb(0, 162, 255)");
                               $("#submit-button").removeClass("submit-button-alt");
                               $("#submit-button").addClass("submit-button");
@@ -629,9 +629,9 @@ function checkColorValidity(inputColor, element) {
                colorPass = true;
           }
      }
-     if(colorPass == true) {
+     if (colorPass == true) {
           //Passes color check:
-          if(element == "header-title-color") {
+          if (element == "header-title-color") {
                headerTitleColorSet = true;
                headerTitleColor = inputColor;
                $("#text-output5").html(inputColor);
@@ -645,12 +645,12 @@ function checkColorValidity(inputColor, element) {
 function setHeaderTitleStatus() {
      selectVis(0);
      removeChilds();
-     if(headerTitle == "enabled") {
+     if (headerTitle == "enabled") {
           $("#preview-body-header").html("<img src='../images/placeholder-image.png' id='preview-body-header-logo' alt='Your customized websites logo'><h2 id='preview-body-header-title'>Website Name not set!</h2>");
           $("#preview-body-header-logo").attr("src", logo);
           $("#preview-body-header-title").css("color", headerTitleColor).css("font-family", headerFontVal);
           $("#text-output6").html("Enabled");
-     } else if(headerTitle == "disabled") {
+     } else if (headerTitle == "disabled") {
           $("#preview-body-header").html("<img src='../images/placeholder-image.png' id='preview-body-header-logo' alt='Your customized websites logo'>");
           $("#preview-body-header-logo").attr("src", logo);
           $("#text-output6").html("Disabled");
@@ -658,19 +658,19 @@ function setHeaderTitleStatus() {
 }
 
 function setBodyBackgroundType() {
-     if(bodyBackgroundType == "solid") {}
+     if (bodyBackgroundType == "solid") {}
 }
 
 function setText(type) {
-     if(type == "text") {
+     if (type == "text") {
           bodyText = $("#body-text-input-box").val();
           $("#preview-body-body-text").html(bodyText);
           $("#text-output9").html(bodyText);
-     } else if(type == "subtext") {
+     } else if (type == "subtext") {
           bodySubtext = $("#body-subtext-input-box").val();
           $("#preview-body-body-subtext").html(bodySubtext);
           $("#text-output10").html(bodySubtext);
-}
+     }
      selectVis(0);
      removeChilds();
 }
@@ -684,7 +684,7 @@ let action = 1;
 let placeholderData = [];
 
 function createProduct(action) {
-     if(action == 1) {
+     if (action == 1) {
           selectVis(1);
           removeChilds();
 
@@ -702,33 +702,58 @@ function createProduct(action) {
           $(submitButton).attr("onclick", "createProduct(2)");
           submitButton.id = "submit-button";
           $("#selections").append(submitButton);
-     } else if(action == 2) {
-          placeholderData[0] = $("#product-name-input-box").val();
-          removeChilds();
+     } else if (action == 2) {
+          if ($("#product-name-input-box").val().length >= 3) {
+               placeholderData[0] = $("#product-name-input-box").val();
+               removeChilds();
 
-          let buttonContainer = document.createElement("input");
-          $(buttonContainer).addClass("selections-button JS-REMOVABLE");
-          $(buttonContainer).css("width", "calc((100% - 10%) / 1)")
-          $(buttonContainer).html("");
-          $(buttonContainer).attr("placeholder", "Input Product Image URL Here");
-          $(buttonContainer).attr("type", "text");
-          buttonContainer.id = "product-img-input-box";
-          $(buttonContainer).on("input", function() {
-               if($(buttonContainer).val().length >= 200) {
-                    $(buttonContainer).css("font-size", "100%");
-               } else {
-                    $(buttonContainer).css("font-size", 300 - $(buttonContainer).val().length + "%");
-               }
-          });
-          $("#selections").append(buttonContainer);
-          let submitButton = document.createElement("div");
-          $(submitButton).addClass("submit-button JS-REMOVABLE");
-          $(submitButton).html("Submit");
-          $(submitButton).attr("onclick", "createProduct(3)");
-          submitButton.id = "submit-button";
-          $("#selections").append(submitButton);
-     } else if(action == 3) {
-          placeholderData[1] = $("#product-img-input-box").val();
+               let buttonContainer = document.createElement("input");
+               $(buttonContainer).addClass("selections-button JS-REMOVABLE");
+               $(buttonContainer).css("width", "calc((100% - 10%) / 1)")
+               $(buttonContainer).html("");
+               $(buttonContainer).attr("placeholder", "Input Product Image URL Here");
+               $(buttonContainer).attr("type", "text");
+               buttonContainer.id = "product-img-input-box";
+               $(buttonContainer).on("input", function () {
+                    if ($(buttonContainer).val().length >= 200) {
+                         $(buttonContainer).css("font-size", "100%");
+                    } else {
+                         $(buttonContainer).css("font-size", 300 - $(buttonContainer).val().length + "%");
+                    }
+               });
+               $("#selections").append(buttonContainer);
+               let submitButton = document.createElement("div");
+               $(submitButton).addClass("submit-button JS-REMOVABLE");
+               $(submitButton).html("Submit");
+               $(submitButton).attr("onclick", "createProduct(3)");
+               submitButton.id = "submit-button";
+               $("#selections").append(submitButton);
+          } else {
+               //Return Error
+               $("#submit-button").attr("onclick", "");
+               $("#submit-button").removeClass("submit-button");
+               $("#submit-button").addClass("submit-button-alt");
+               let amount = 0;
+               let interval = setInterval(function () {
+                    if (amount % 2 == 0) {
+                         $("#submit-button").css("background-color", "red");
+                    } else {
+                         $("#submit-button").css("background-color", "white");
+                    }
+                    if (amount == 5) {
+                         $("#submit-button").css("background-color", "rgb(0, 162, 255)");
+                         $("#submit-button").removeClass("submit-button-alt");
+                         $("#submit-button").addClass("submit-button");
+                         amount = 0;
+                         clearInterval(interval);
+                         $("#submit-button").attr("onclick", "createProduct(2)");
+                    }
+                    amount++;
+               }, 200);
+          }
+     } else if (action == 3) {
+          if($("#product-img-input-box").val().substring($("#product-img-input-box").val().length - 4, $("#product-img-input-box").val().length) == ".png" || $("#product-img-input-box").val().substring($("#product-img-input-box").val().length - 4, $("#product-img-input-box").val().length) == ".jpg" || $("#product-img-input-box").val().substring($("#product-img-input-box").val().length - 5, $("#product-img-input-box").val().length) == ".jpeg" || $("#product-img-input-box").val().substring($("#product-img-input-box").val().length - 4, $("#product-img-input-box").val().length) == ".gif") {
+               placeholderData[1] = $("#product-img-input-box").val();
           removeChilds();
 
           let buttonContainer = document.createElement("input");
@@ -745,12 +770,40 @@ function createProduct(action) {
           $(submitButton).attr("onclick", "createProduct(4)");
           submitButton.id = "submit-button";
           $("#selections").append(submitButton);
-     } else if(action == 4) {
-          placeholderData[2] = $("#product-price-input-box").val();
+          } else {
+               //Return Error
+               $("#submit-button").attr("onclick", "");
+               $("#submit-button").removeClass("submit-button");
+               $("#submit-button").addClass("submit-button-alt");
+               let amount = 0;
+               let interval = setInterval(function () {
+                    if (amount % 2 == 0) {
+                         $("#submit-button").css("background-color", "red");
+                    } else {
+                         $("#submit-button").css("background-color", "white");
+                    }
+                    if (amount == 5) {
+                         $("#submit-button").css("background-color", "rgb(0, 162, 255)");
+                         $("#submit-button").removeClass("submit-button-alt");
+                         $("#submit-button").addClass("submit-button");
+                         amount = 0;
+                         clearInterval(interval);
+                         $("#submit-button").attr("onclick", "createProduct(3)");
+                    }
+                    amount++;
+               }, 200);
+          }
+     } else if (action == 4) {
+          if(parseInt($("#product-price-input-box").val()) >= 0) {
+               placeholderData[2] = $("#product-price-input-box").val();
           removeChilds();
           selectVis(0);
 
-          productData.push({name: placeholderData[0], image: placeholderData[1], price: placeholderData[2]});
+          productData.push({
+               name: placeholderData[0],
+               image: placeholderData[1],
+               price: placeholderData[2]
+          });
           let tr = document.createElement("tr");
           tr.id = "tr-" + productCount;
           $("#products-table").append(tr);
@@ -771,11 +824,26 @@ function createProduct(action) {
 
           let td2 = document.createElement("td");
           td2.id = "td-" + productCount + "-2";
-          $(td2).html("$" + placeholderData[2]);
+          if(parseInt(placeholderData[2]) != 0) {
+               $(td2).html("$" + numberWithCommas(parseInt(placeholderData[2])));
+          } else {
+               $(td2).html("Free");
+          }
           $(tr).append(td2);
 
           productCount++;
           // console.log(productData);
-          if(productCount >= 1) $("#products-alert").remove();
+          if (productCount >= 1) {
+               $("#products-alert").remove();
+               $("table").css("visibility", "visible");
+          }
+          } else {
+
+          }
+          
      }
+}
+
+function numberWithCommas(x) {
+     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
