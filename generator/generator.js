@@ -752,24 +752,24 @@ function createProduct(action) {
                }, 200);
           }
      } else if (action == 3) {
-          if($("#product-img-input-box").val().substring($("#product-img-input-box").val().length - 4, $("#product-img-input-box").val().length) == ".png" || $("#product-img-input-box").val().substring($("#product-img-input-box").val().length - 4, $("#product-img-input-box").val().length) == ".jpg" || $("#product-img-input-box").val().substring($("#product-img-input-box").val().length - 5, $("#product-img-input-box").val().length) == ".jpeg" || $("#product-img-input-box").val().substring($("#product-img-input-box").val().length - 4, $("#product-img-input-box").val().length) == ".gif") {
+          if ($("#product-img-input-box").val().substring($("#product-img-input-box").val().length - 4, $("#product-img-input-box").val().length) == ".png" || $("#product-img-input-box").val().substring($("#product-img-input-box").val().length - 4, $("#product-img-input-box").val().length) == ".jpg" || $("#product-img-input-box").val().substring($("#product-img-input-box").val().length - 5, $("#product-img-input-box").val().length) == ".jpeg" || $("#product-img-input-box").val().substring($("#product-img-input-box").val().length - 4, $("#product-img-input-box").val().length) == ".gif") {
                placeholderData[1] = $("#product-img-input-box").val();
-          removeChilds();
+               removeChilds();
 
-          let buttonContainer = document.createElement("input");
-          $(buttonContainer).addClass("selections-button JS-REMOVABLE");
-          $(buttonContainer).css("width", "calc((100% - 10%) / 1)")
-          $(buttonContainer).html("");
-          $(buttonContainer).attr("placeholder", "Enter Numerical Price Here");
-          $(buttonContainer).attr("type", "number");
-          buttonContainer.id = "product-price-input-box";
-          $("#selections").append(buttonContainer);
-          let submitButton = document.createElement("div");
-          $(submitButton).addClass("submit-button JS-REMOVABLE");
-          $(submitButton).html("Submit");
-          $(submitButton).attr("onclick", "createProduct(4)");
-          submitButton.id = "submit-button";
-          $("#selections").append(submitButton);
+               let buttonContainer = document.createElement("input");
+               $(buttonContainer).addClass("selections-button JS-REMOVABLE");
+               $(buttonContainer).css("width", "calc((100% - 10%) / 1)")
+               $(buttonContainer).html("");
+               $(buttonContainer).attr("placeholder", "Enter Numerical Price Here");
+               $(buttonContainer).attr("type", "number");
+               buttonContainer.id = "product-price-input-box";
+               $("#selections").append(buttonContainer);
+               let submitButton = document.createElement("div");
+               $(submitButton).addClass("submit-button JS-REMOVABLE");
+               $(submitButton).html("Submit");
+               $(submitButton).attr("onclick", "createProduct(4)");
+               submitButton.id = "submit-button";
+               $("#selections").append(submitButton);
           } else {
                //Return Error
                $("#submit-button").attr("onclick", "");
@@ -794,53 +794,73 @@ function createProduct(action) {
                }, 200);
           }
      } else if (action == 4) {
-          if(parseInt($("#product-price-input-box").val()) >= 0) {
+          if (parseInt($("#product-price-input-box").val()) >= 0) {
                placeholderData[2] = $("#product-price-input-box").val();
-          removeChilds();
-          selectVis(0);
+               removeChilds();
+               selectVis(0);
 
-          productData.push({
-               name: placeholderData[0],
-               image: placeholderData[1],
-               price: placeholderData[2]
-          });
-          let tr = document.createElement("tr");
-          tr.id = "tr-" + productCount;
-          $("#products-table").append(tr);
+               productData.push({
+                    name: placeholderData[0],
+                    image: placeholderData[1],
+                    price: placeholderData[2]
+               });
+               let tr = document.createElement("tr");
+               tr.id = "tr-" + productCount;
+               $("#products-table").append(tr);
 
-          let td0 = document.createElement("td");
-          td0.id = "td-" + productCount + "-0";
-          $(td0).html(placeholderData[0]);
-          $(tr).append(td0);
+               let td0 = document.createElement("td");
+               td0.id = "td-" + productCount + "-0";
+               $(td0).html(placeholderData[0]);
+               $(tr).append(td0);
 
-          let td1 = document.createElement("td");
-          td1.id = "td-" + productCount + "-1";
-          $(tr).append(td1);
+               let td1 = document.createElement("td");
+               td1.id = "td-" + productCount + "-1";
+               $(tr).append(td1);
 
-          let img = document.createElement("img");
-          img.id = "img-" + productCount;
-          $(img).attr("src", placeholderData[1]);
-          $(td1).append(img);
+               let img = document.createElement("img");
+               img.id = "img-" + productCount;
+               $(img).attr("src", placeholderData[1]);
+               $(td1).append(img);
 
-          let td2 = document.createElement("td");
-          td2.id = "td-" + productCount + "-2";
-          if(parseInt(placeholderData[2]) != 0) {
-               $(td2).html("$" + numberWithCommas(parseInt(placeholderData[2])));
+               let td2 = document.createElement("td");
+               td2.id = "td-" + productCount + "-2";
+               if (parseInt(placeholderData[2]) != 0) {
+                    $(td2).html("$" + numberWithCommas(parseInt(placeholderData[2])));
+               } else {
+                    $(td2).html("Free");
+               }
+               $(tr).append(td2);
+
+               productCount++;
+               // console.log(productData);
+               if (productCount >= 1) {
+                    $("#products-alert").remove();
+                    $("table").css("visibility", "visible");
+               }
           } else {
-               $(td2).html("Free");
+               //Return Error
+               $("#submit-button").attr("onclick", "");
+               $("#submit-button").removeClass("submit-button");
+               $("#submit-button").addClass("submit-button-alt");
+               let amount = 0;
+               let interval = setInterval(function () {
+                    if (amount % 2 == 0) {
+                         $("#submit-button").css("background-color", "red");
+                    } else {
+                         $("#submit-button").css("background-color", "white");
+                    }
+                    if (amount == 5) {
+                         $("#submit-button").css("background-color", "rgb(0, 162, 255)");
+                         $("#submit-button").removeClass("submit-button-alt");
+                         $("#submit-button").addClass("submit-button");
+                         amount = 0;
+                         clearInterval(interval);
+                         $("#submit-button").attr("onclick", "createProduct(4)");
+                    }
+                    amount++;
+               }, 200);
           }
-          $(tr).append(td2);
 
-          productCount++;
-          // console.log(productData);
-          if (productCount >= 1) {
-               $("#products-alert").remove();
-               $("table").css("visibility", "visible");
-          }
-          } else {
-
-          }
-          
      }
 }
 
