@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Google's Material Icons font library -->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <!-- Important styling files -->
+     <link rel="stylesheet" href="../global.css">
+     <link rel="stylesheet" href="published.css">
+     <!-- For other device resolutions -->
+     <link rel="stylesheet" href="../resolutions/published.css">
+     <!-- Generating a favicon from logo -->
+     <link rel="icon" type="image/png" href="../images/logo-gray.png" id="light-scheme-icon" />
+     <!-- Title of webpage -->
+     <title>Webstore Builder | Public Redirectory</title>
+</head>
+
+<body class="preload" onload="stopTransitionsOnLoad()">
+     <div id="header">
+          <a href="../index.html" id="logo-a"><img src="../images/logo.png" id="logo" alt="Webstore Builder Logo"></a>
+          <a href="../index.html" id="logo-text">
+               <h1>Webstore Builder</h1>
+          </a>
+          <span id="divider">|</span>
+          <a href="../generator/generator.html" class="translate-auxiliary page">
+               <h1>Create a Webstore</h1>
+          </a>
+          <a href="published.html" class="translate-auxiliary page">
+               <h1>Published Webstores</h1>
+          </a>
+          <a href="../about/about.html" class="translate-auxiliary page">
+               <h1>About Us</h1>
+          </a>
+     </div>
+     <div id="php-content" class="content">
+          <img src="../images/github-pages.png" id="github-pages-image" alt="GitHub Pages Logo">
+          <h2 id="php-title">PHP Disabled in GitHub Pages!</h2>
+          <h3 class="php-subtitle">Unfortunately, Github Pages does not support the use of backend hosting (PHP and MySQL) so user data is unable to be stored/published.</h3>
+          <h3 class="php-subtitle">Thankfully, you can visit <a href="#" class="php-hyperlink">this page</a> to use this same website on a webhost we own, and can host user data on.</h3>
+          <h3 class="php-subtitle">Otherwise, you can visit the "Save Website" tab and save your website locally from there.</h3>
+     </div>
+     <div id="footer">
+          <div id="footer-flex-container1">
+               <span><a href="../index.html"><img src="../images/logo.png" id="footer-logo" alt="Webstore Builder Logo"></a></span>
+               <span><a href="../index.html" class="footer-page">Home</a></span>
+               <span><a href="../generator/generator.html" class="footer-page">Webstore Builder Editor</a></span>
+               <span><a href="published.html" class="footer-page">Published Webstores</a></span>
+               <span><a href="../about.html" class="footer-page">About Us</a></span>
+          </div>
+          <div id="footer-flex-container2">
+               <a href="#"><i class="fa-brands fa-facebook-f fa-2x" alt="Facebook" title="Facebook"></i></a>
+               <a href="#"><i class="fa-brands fa-twitter fa-2x" alt="Twitter" title="Twitter"></i></a>
+               <a href="#"><i class="fa-brands fa-instagram fa-2x" alt="Instagram" title="Instagram"></i></a>
+               <a href="#"><i class="fa-brands fa-linkedin-in fa-2x" alt="Linkedin" title="Linkedin"></i></a>
+               <a href="https://github.com/ClutchMasterFTW/Ctrl-Shift-2022" target="_blank"><i class="fa-brands fa-github fa-2x" alt="GitHub" title="GitHub"></i></a>
+          </div>
+     </div>
+     <span id="back-to-top" class="material-icons" title="Return to top of page" onclick="returnToTop()">arrow_upward</span>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+     <!-- Font Awesome icons -->
+     <script src="https://kit.fontawesome.com/1df22ca4d1.js" crossorigin="anonymous"></script>
+     <script src="published.js"></script>
+</body>
+
+</html>

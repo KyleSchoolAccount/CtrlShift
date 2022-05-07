@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Google's Material Icons font library -->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <link rel="stylesheet" href="../global.css">
+     <link rel="stylesheet" href="generator.css">
+     <link rel="icon" type="image/png" href="../images/logo-gray.png">
+     <title>Webstore Builder | Editor</title>
+</head>
+
+<body>
+     <aside id="header">
+          <div id="header-logo">
+               <a href="../index.html">
+                    <img src="../images/logo.png" id="header-logo-img" title="Home" alt="Webstore Builder Logo">
+               </a>
+          </div>
+          <ul>
+               <li class="header-item" title="Customize Styling" id="header-item1" aria-label="Customize Styling">
+                    <span class="material-icons">design_services</span>
+                    <span class="hidden-item-title">Customize Styling</span>
+               </li>
+               <li class="header-item" title="Store Properties" id="header-item2" aria-label="Store Properties">
+                    <span class="material-icons">dashboard_customize</span>
+                    <span class="hidden-item-title">Store Properties</span>
+               </li>
+               <li class="header-item" title="View Website" id="header-item3" aria-label="View Website">
+                    <span class="material-icons">visibility</span>
+                    <span class="hidden-item-title">View Website</span>
+               </li>
+               <li class="header-item" title="Help" id="header-item4" aria-label="Help">
+                    <span class="material-icons">help</span>
+                    <span class="hidden-item-title">Help</span>
+               </li>
+               <li class="header-item" title="Save Website" id="header-item5" aria-label="Save Website">
+                    <span class="material-icons">save_as</span>
+                    <span class="hidden-item-title">Save Website</span>
+               </li>
+               <!-- <li class="header-item inactive" title="Publish" id="header-item6" aria-label="Publish">
+                    <span class="material-icons">publish</span>
+                    <span class="hidden-item-title">Publish</span>
+               </li> -->
+          </ul>
+          <span id="menu-text">MENU</span>
+     </aside>
+     <div id="welcome-panel" class="content">
+          <img src="../images/editor-logo.png" id="welcome-panel-image" alt="Webstore Builder Editor Logo">
+          <h1 id="welcome-panel-title">Welcome to the Webstore Editor!</h1>
+          <h2 class="welcome-panel-subtitle">Navigate around by hovering your cursor over the menu on the left, then clicking on the tabs.</h2>
+          <h2 class="welcome-panel-subtitle">If you need further help, click on the "Help" tab in the navigator menu.</h2>
+     </div>
+     <div id="style-content" class="content">
+          <h1 class="content-title">Customize Styling</h1>
+          <h2 class="content-subtitle">Initial Settings</h2>
+          <div class="content-item">
+               <h3 class="text"><b>Logo</b>:</h3>
+               <h3 class="text" id="text-output1">Not Selected</h3>
+               <div class="button" onclick="displaySelections('output1')">Input</div>
+          </div>
+          <div class="content-item">
+               <h3 class="text"><b>Store Name</b>:</h3>
+               <h3 class="text" id="text-output3">Not Set</h3>
+               <div class="button" onclick="displaySelections('output3')">Input</div>
+          </div>
+          <h2 class="content-subtitle">Header</h2>
+          <div class="content-item">
+               <h3 class="text"><b>Header-Border</b>:</h3>
+               <h3 class="text" id="text-output2">Enabled</h3>
+               <div class="button" onclick="displaySelections('output2')">Select</div>
+          </div>
+          <div class="content-item">
+               <h3 class="text"><b>Header Font</b>:</h3>
+               <h3 class="text" id="text-output4">Montserrat</h3>
+               <div class="button" onclick="displaySelections('output4')">Select</div>
+          </div>
+          <div class="content-item">
+               <h3 class="text"><b>Header Title Color</b>:</h3>
+               <h3 class="text" id="text-output5">#000000</h3>
+               <div class="button" onclick="displaySelections('output5')">Select</div>
+          </div>
+          <div class="content-item">
+               <h3 class="text"><b>Header Title</b>:</h3>
+               <h3 class="text" id="text-output6">Enabled</h3>
+               <div class="button" onclick="displaySelections('output6')">Select</div>
+          </div>
+          <h2 class="content-subtitle">Body</h2>
+          <!-- <div class="content-item">
+               <h3 class="text"><b>Body Background Type</b>:</h3>
+               <h3 class="text" id="text-output7">Solid Color</h3>
+               <div class="button" onclick="displaySelections('output7')">Select</div>
+          </div>
+          <div class="content-item">
+               <h3 class="text"><b>Body Background Properties</b>:</h3>
+               <h3 class="text" id="text-output8">Color: #ffffff</h3>
+               <div class="button" onclick="displaySelections('output8')">Input</div>
+          </div> -->
+          <div class="content-item">
+               <h3 class="text"><b>Body Text</b>:</h3>
+               <h3 class="text" id="text-output9">Not Set</h3>
+               <div class="button" onclick="displaySelections('output9')">Input</div>
+          </div>
+          <div class="content-item">
+               <h3 class="text"><b>Body Subtext</b>:</h3>
+               <h3 class="text" id="text-output10">Not Set</h3>
+               <div class="button" onclick="displaySelections('output10')">Input</div>
+          </div>
+          <!-- <h2 class="content-subtitle">Product Styling</h2> -->
+          <!-- <h2 class="content-subtitle">Footer</h2> -->
+     </div>
+     <div id="properties-content" class="content">
+          <h2 id="properties-add-button" onclick="createProduct(1)"><span class="material-icons">add</span> Add Another Product</h2>
+
+          <h1 class="content-title">Store Properties</h1>
+          <h2 id="products-alert">There are currently no products created! Create your first one by pressing the "Add Another Product" button in the top right!</h2>
+          <table id="products-table">
+               <tr>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Price</th>
+                    <!-- <th>One time payment/Monthly payment</th> -->
+                    <!-- <th>Remove</th> -->
+               </tr>
+          </table>
+     </div>
+     <div id="view-content" class="content">
+          <div id="preview-body">
+               <!--A whole new website is created within this div-->
+               <div id="preview-body-header">
+                    <img src="../images/placeholder-image.png" id="preview-body-header-logo" alt="Your customized websites logo">
+                    <h2 id="preview-body-header-title">Website Name not set!</h2>
+               </div>
+               <div id="preview-body-body">
+                    <div id="preview-body-body-image">
+                         <h2 id="preview-body-body-text">Welcome to your demo store!</h2>
+                         <h3 id="preview-body-body-subtext">You can customize nearly anything you wish by heading over to the Customize Styling section and Store Properties tabs in the menu. This body of text is called the "Body Subtext" in the Customize Styling tab, at which can be edited to whatever you would like. Happy editing!</h3>
+                    </div>
+                    <div id="preview-body-body-products-container">
+                         
+                    </div>
+               </div>
+          </div>
+          <div id="view-notification">You are in Preview Mode. If you want to save this websites progress, click on the "Save Website" tab. <!--Otherwise, you can publish this website publicly in the "Publish" tab!--><span class="material-icons" id="close-view-notification" onclick="$('#view-notification').css('visibility', 'hidden').css('opacity', '0%')">close</span></div>
+     </div>
+     <div id="help-content" class="content">
+          <div id="help-content-flex-container">
+               <h2>Help Directory</h2>
+               <h3><span class="material-icons">done</span> General Notation</h3>
+               <p>Before using this website, we highly advise you to read through this help section, as to not lose progress you put into this tool, and to get informed on how to make a sucessful webstore without error.</p>
+               <p>Note that there are 6 different sections in the editor that all perform different tasks. These are located on the left of the editor, in the menu. You may return to the home page/miscellaneous pages by clicking on the Webstore Builder logo in the top of the editors menu.</p>
+               <p>Whenever inputting values in the editor, make sure to click the blue "Submit" button in the selector menu (located in the bottom, and visible when changing properties). Changes will not appear unless the submit button is clicked and the value inputted is valid (the submit button will flash red, signaling if otherwise).</p>
+               <h3><span class="material-icons">design_services</span> Customize Styling</h3>
+               <p>This section is mainly dedicated to inputting website information, and changing the styles of all elements on your generated webstore.</p>
+               <p><b>Initial Settings>Logo</b>: This setting changes your webstores logo throughout the whole page. This requires a url link to the image (meaning your logo needs to be hosted on the web somewhere else, such as <a href="https://imgur.com/upload" target="_blank">imgur.com</a>), this input only excepts links ending in <b>.png</b>, <b>.jpg</b>, <b>.jpeg</b>, and <b>.gif</b>. For example, a logo link should look like this: <a href="https://i.imgur.com/BaZjxCC.png" target="_blank">https://i.imgur.com/BaZjxCC.png</a>.</p>
+               <p><b>Initial Settings>Store Name</b>: This setting changes your webstores name throughout the whole page. This requires an input of text (larger than 3 characters).</p>
+               <p><b>Header>Header-Border</b>: This setting changes your headers border. With it enabled, a small black line will divide the border from the rest of the page, making it more distinguishable. Disabling it will remove the border line. (Enabled by default)</p>
+               <p><b>Header>Header Font</b>: This setting changes your headers font. There are 6 different font options to choose from. (Montserrat by default)</p>
+               <p><b>Header>Header Title Color</b>: This setting changes your headers website name (if enabled). This selection only allows for hex codes to be inputted, for example: "#ff0000" is the color red. You can use this tool to find hex codes: <a href="https://htmlcolorcodes.com/color-picker/" target="_blank">https://htmlcolorcodes.com/color-picker/</a> (#000000 by default)</p>
+               <p><b>Header>Header Title</b>: This setting removes or adds the website name to your header. If you have a logo, sometimes it contains the name of your brand inside of it, in which case you can remove the automatically generated one. (Enabled by default)</p>
+          </div>
+     </div>
+     <div id="javascript-content" class="content">
+          <div id="javascript-content-flex-container">
+               <h2 class="javascript-content-title">Save Website (Locally)</h2>
+               <h3 class="javascript-content-subtitle">If you don't wish to publish your website yet, you have the option to save your webstore progress by downloading the data<!--, or saving it in your browers cookies-->.</h3>
+               <h3 class="javascript-content-text"><b>Download .txt file:</b>
+                    <div class="javascript-content-button" id="download">Download</div>
+               </h3>
+               <h3 class="javascript-content-text"><b>Upload .txt file:</b><input type="file" id="fileToLoad">
+                    <div class="javascript-content-button" onclick="upload()">Upload</div>
+               </h3>
+               <!-- <h3 class="javascript-content-text"><b>Save to Cookies </b>
+                    <div class="javascript-content-button">Save</div>
+               </h3>
+               <h3 class="javascript-content-text"><b>Retrieve from Cookies </b>
+                    <div class="javascript-content-button">Retrieve</div>
+               </h3> -->
+          </div>
+     </div>
+     <div id="php-content" class="content">
+          <img src="../images/github-pages.png" id="github-pages-image" alt="GitHub Pages Logo">
+          <h2 id="php-title">PHP Disabled in GitHub Pages!</h2>
+          <h3 class="php-subtitle">Unfortunately, Github Pages does not support the use of backend hosting (PHP and MySQL) so user data is unable to be stored/published.</h3>
+          <h3 class="php-subtitle">Thankfully, you can visit <a href="#" class="php-hyperlink">this page</a> to use this same website on a webhost we own, and can host user data on.</h3>
+          <h3 class="php-subtitle">Otherwise, you can visit the "Save Website" tab and save your website locally from there.</h3>
+     </div>
+     <!--Append to container once needed, then revert back to body and remove children elements-->
+     <div id="selections"></div>
+     <div id="tool-tips-container">
+          <!--Place tool-tips in here that will pop up after a certain amount of time in the bottom right-->
+     </div>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+     <script src="generator.js"></script>
+     <noscript>You need to enable Javascript in your browser settings to use this tool.</noscript>
+</body>
+
+</html>

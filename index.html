@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Google's Material Icons font library -->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <!-- Important styling files -->
+     <link rel="stylesheet" href="global.css">
+     <link rel="stylesheet" href="index.css">
+     <!-- For other device resolutions -->
+     <link rel="stylesheet" href="resolutions/index.css">
+     <!-- Generating a favicon from logo -->
+     <link rel="icon" type="image/png" href="images/logo-gray.png" id="light-scheme-icon" />
+     <!-- Title of webpage -->
+     <title>Webstore Builder | Home</title>
+</head>
+
+<body class="preload" onload="stopTransitionsOnLoad()">
+     <div id="header">
+          <a href="index.html" id="logo-a"><img src="images/logo.png" id="logo" alt="Webstore Builder Logo"></a>
+          <a href="index.html" id="logo-text"><h1>Webstore Builder</h1></a>
+          <span id="divider">|</span>
+          <a href="generator/generator.html" class="translate-auxiliary page"><h1>Create a Webstore</h1></a>
+          <!-- <a href="published/published.html" class="translate-auxiliary page"><h1>Published Webstores</h1></a> -->
+          <a href="about/about.html" class="translate-auxiliary page"><h1>About Us</h1></a>
+     </div>
+     <div class="page-content">
+          <div id="welcome-container">
+               <!-- Parallax image -->
+               <img src="images/Philadelphia.jpeg" class="parallax-image" alt="Philadelphia skyline">
+               <!--Text-->
+               <div id="static-welcome-text">A Webstore Builder that is</div>
+               <div id="dynamic-welcome-text"></div>
+          </div>
+          <!-- Background Color with high z-index -->
+          <div id="content1-container">
+               <div id="content1-flex-container">
+                    <h2 class="content1-title">No need for any prior Web-Development Knowledge</h2>
+                    <p class="content1-text">This tool was created for everyone to use, without having to spend a <span style="font-style: italic;">cent</span> on expensive developers.</p>
+               </div>
+          </div>
+          <div id="content2-container">
+               <h1 id="content2-title">Customize <span id="everything-element">EVERYTHING</span>.</h1>
+          </div>
+          <div id="content3-container">
+               <h1 id="content3-title">Make a flexible store that displays your products to customers through the web.</h1>
+               <span class="material-icons down-arrow">arrow_downward</span>
+               <div class="content3-flex-container">
+                    <div class="shop-item-container" id="item1">
+                         <div class="shop-item-img-container">
+                              <img src="sample-products/product1.jpg" class="shop-item-img" alt="Apple Watch Series 6">
+                              <span class="shop-item-price">$399.99 <span class="material-icons">shopping_cart</span></span>
+                         </div>
+                         <h2 class="shop-item-title">Apple Watch Series 6 | 32gb Storage</h2>
+                    </div>
+
+                    <div class="shop-item-container" id="item2">
+                         <div class="shop-item-img-container">
+                              <img src="sample-products/product2.jpg" class="shop-item-img" alt="Webstore Builder Shirt">
+                              <span class="shop-item-price">$19.99 <span class="material-icons">shopping_cart</span></span>
+                         </div>
+                         <h2 class="shop-item-title">Webstore Builder Shirt | Black</h2>
+                    </div>
+
+                    <div class="shop-item-container" id="item3">
+                         <div class="shop-item-img-container">
+                              <img src="sample-products/product3.jpg" class="shop-item-img" alt="Webstore Builder Shirt">
+                              <span class="shop-item-price">$150.00 <span class="material-icons">shopping_cart</span></span>
+                         </div>
+                         <h2 class="shop-item-title">Adidas | NMD_R1 Primeblue Shoes</h2>
+                    </div>
+
+                    <div class="shop-item-container" id="item4">
+                         <div class="shop-item-img-container">
+                              <img src="sample-products/product4.jpg" class="shop-item-img" alt="Burger w/ Fries (and drink)">
+                              <span class="shop-item-price">$7.99 <span class="material-icons">shopping_cart</span></span>
+                         </div>
+                         <h2 class="shop-item-title">Burger w/ Fries Meal (890 Cal.)</h2>
+                    </div>
+
+                    <div class="shop-item-container" id="item5">
+                         <div class="shop-item-img-container">
+                              <img src="sample-products/product5.jpg" class="shop-item-img" alt="Tomatoes (3 pack)">
+                              <span class="shop-item-price">$3.49 <span class="material-icons">shopping_cart</span></span>
+                         </div>
+                         <h2 class="shop-item-title">Tomatoes (3 Pack)</h2>
+                    </div>
+
+                    <div class="shop-item-container" id="item6">
+                         <div class="shop-item-img-container">
+                              <img src="sample-products/product6.jpg" class="shop-item-img" alt="2018 Audi A5 (red)">
+                              <span class="shop-item-price subscription">$369/month <span class="material-icons">event_repeat</span></span>
+                         </div>
+                         <h2 class="shop-item-title">2018 Audi A5 (Red)</h2>
+                    </div>
+               </div>
+          </div>
+          <div id="content4-container">
+               <div id="particles-js">
+                    <div id="content4-flex-container">
+                         <h2 class="content4-title">What are you waiting for?</h2>
+                         <h3 class="content4-subtitle">Try out the editor and create something unique!</h3>
+                         <a href="generator/generator.html">
+                              <div id="editor-redirect-button" title="Visit the Webstore Builder Editor">
+                                   <img id="editor-redirect-img" src="images/editor-logo.png" alt="Webstore Builder Editor">
+                              </div>
+                         </a>
+                    </div>
+               </div>
+          </div>
+     </div>
+     <div id="footer">
+          <div id="footer-flex-container1">
+               <span><a href="index.html"><img src="images/logo.png" id="footer-logo" alt="Webstore Builder Logo"></a></span>
+               <span><a href="index.html" class="footer-page">Home</a></span>
+               <span><a href="generator/generator.html" class="footer-page">Webstore Builder Editor</a></span>
+               <!-- <span><a href="published/published.html" class="footer-page">Published Webstores</a></span> -->
+               <span><a href="about/about.html" class="footer-page">About Us</a></span>
+          </div>
+          <div id="footer-flex-container2">
+               <a href="#"><i class="fa-brands fa-facebook-f fa-2x" alt="Facebook" title="Facebook"></i></a>
+               <a href="#"><i class="fa-brands fa-twitter fa-2x" alt="Twitter" title="Twitter"></i></a>
+               <a href="#"><i class="fa-brands fa-instagram fa-2x" alt="Instagram" title="Instagram"></i></a>
+               <a href="#"><i class="fa-brands fa-linkedin-in fa-2x" alt="Linkedin" title="Linkedin"></i></a>
+               <a href="https://github.com/KyleSchoolAccount/Ctrl-Shift-2022" target="_blank"><i class="fa-brands fa-github fa-2x" alt="GitHub" title="GitHub"></i></a>
+          </div>
+     </div>
+     <span id="back-to-top" class="material-icons" title="Return to top of page" onclick="returnToTop()">arrow_upward</span>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+     <!-- particles.js lib - https://github.com/VincentGarreau/particles.js -->
+     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+     <!-- Font Awesome icons -->
+     <script src="https://kit.fontawesome.com/1df22ca4d1.js" crossorigin="anonymous"></script>
+     <script src="index.js"></script>
+</body>
+
+</html>
