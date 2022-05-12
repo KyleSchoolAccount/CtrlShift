@@ -219,7 +219,7 @@ ul {
      font-size: 150%;
      font-weight: 400;
      font-family: 'Abel', sans-serif;
-     padding-right: 25px;
+     padding: 0 25px 0 25px;
 }
 
 .button {
@@ -590,6 +590,8 @@ input {
 #properties-add-button .material-icons {
      font-size: 30px;
      vertical-align: middle;
+     position: relative;
+     z-index: 5;
 }
 
 #properties-add-button:hover {
@@ -620,6 +622,7 @@ table {
      margin-top: 1%;
      transform: translateX(-50%);
      visibility: hidden;
+     z-index: 1;
 } 
 
 th {
@@ -705,4 +708,61 @@ td {
 #preview-body-body-products-container {
      position: relative;
      width: 100%;
+     background-color: rgb(223, 223, 223);
+}
+
+#preview-body-body-products-flex-container {
+     position: relative;
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     justify-content: space-evenly;
+     align-items: flex-start;
+     align-content: space-around;
+     gap: 20px;
+}
+
+.shop-item-price {
+     background-color: rgb(3, 94, 252);
+     width: 150px;
+     height: 50px;
+     position: absolute;
+     bottom: 0;
+     right: 0;
+     opacity: 85%;
+     border-top-left-radius: 20px;
+     border-bottom-right-radius: 20px;
+     color: white;
+     font-family: 'Poppins', sans-serif;
+     font-weight: 500;
+     font-size: 25px;
+     user-select: none;
+     cursor: pointer;
+     transition: opacity 0.25s ease;
+     text-align: center;
+     line-height: 50px;
+}
+
+.subscription {
+     background-color: rgb(155, 0, 0);
+     font-size: 17px;
+}
+
+.shop-item-price:hover {
+     opacity: 100%;
+}
+
+.shop-item-price .material-icons {
+     font-size: 17.5px;
+}
+
+.shop-item-name {
+     font-size: 20px;
+     font-family: 'Poppins', sans-serif;
+     font-weight: 400;
+     color: black;
+     position: relative;
+     user-select: none;
+     cursor: pointer;
 }
