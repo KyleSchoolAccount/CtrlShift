@@ -12,17 +12,19 @@ let headerTitleColorSet = false;
 let headerTitleColor = "#000000";
 let headerTitle = "enabled";
 let bodyBackgroundType = "solid";
-let bodyBackgroundProperties = null;
+let bodyBackgroundProperties = "disabled";
 let bodyText = "Welcome to your demo store!";
 let bodySubtext = 'You can customize nearly anything you wish by heading over to the Customize Styling section and Store Properties tabs in the menu. This body of text is called the "Body Subtext" in the Customize Styling tab, at which can be edited to whatever you would like. Happy editing!';
+let bodyTextColor = "black";
+let bodySubtextColor = "black";
 //Store data in a javascript form
-let data = [logo, "\n", logoAcceptable, "\n", imageSet, "\n", websiteNameSet, "\n", websiteName, "\n", headerBorder, "\n", headerFontVal, "\n", headerFont, "\n", headerTitleColorSet, "\n", headerTitleColor, "\n", headerTitle, "\n", bodyBackgroundType, "\n", bodyBackgroundProperties, "\n", bodyText, "\n", bodySubtext, "Version 1.0"];
+let data = [logo, "\n", logoAcceptable, "\n", imageSet, "\n", websiteNameSet, "\n", websiteName, "\n", headerBorder, "\n", headerFontVal, "\n", headerFont, "\n", headerTitleColorSet, "\n", headerTitleColor, "\n", headerTitle, "\n", bodyBackgroundType, "\n", bodyBackgroundProperties, "\n", bodyText, "\n", bodySubtext, "\n", bodyTextColor, "\n", bodySubtextColor, "\n", "Version 1.0"];
 let uploadedData;
 let unpackedData = [];
 let unpackedDataIndex = 0;
 
 function downloadTxt() {
-     data = [logo, "\n", logoAcceptable, "\n", imageSet, "\n", websiteNameSet, "\n", websiteName, "\n", headerBorder, "\n", headerFontVal, "\n", headerFont, "\n", headerTitleColorSet, "\n", headerTitleColor, "\n", headerTitle, "\n", bodyBackgroundType, "\n", bodyBackgroundProperties, "\n", bodyText, "\n", bodySubtext, "Version 1.0"];
+     data = [logo, "\n", logoAcceptable, "\n", imageSet, "\n", websiteNameSet, "\n", websiteName, "\n", headerBorder, "\n", headerFontVal, "\n", headerFont, "\n", headerTitleColorSet, "\n", headerTitleColor, "\n", headerTitle, "\n", bodyBackgroundType, "\n", bodyBackgroundProperties, "\n", bodyText, "\n", bodySubtext, "\n", bodyTextColor, "\n", bodySubtextColor, "\n", "Version 1.0"];
      let hiddenElement = document.createElement('a');
      hiddenElement.href = 'data:attachment/text,' + encodeURIComponent(data);
      hiddenElement.target = '_blank';
@@ -31,6 +33,7 @@ function downloadTxt() {
 }
 document.getElementById('download').addEventListener('click', downloadTxt);
 
+let uploading = false;
 function upload() {
      let fileToLoad = document.getElementById("fileToLoad").files[0];
      let fileReader = new FileReader();
@@ -48,7 +51,7 @@ function upload() {
 function unpileUploadedData() {
      if (uploadedData.indexOf(",") != -1) {
           unpackedData[unpackedDataIndex] = uploadedData.substring(0, uploadedData.indexOf(",\n,"));
-          uploadedData = uploadedData.substring(uploadedData.indexOf(",\n,") + 3 /*length here maybe?*/ );
+          uploadedData = uploadedData.substring(uploadedData.indexOf(",\n,") + 3);
           unpackedDataIndex++;
           unpileUploadedData();
      }
@@ -67,10 +70,15 @@ function recompileVariables() {
      headerTitleColor = unpackedData[9].toString();
      headerTitle = unpackedData[10].toString();
      bodyBackgroundType = unpackedData[11].toString();
-     bodyBackgroundProperties = unpackedData[12].toString(); //Fix later (null case)
+     bodyBackgroundProperties = unpackedData[12].toString(); //Disabled
      bodyText = unpackedData[13].toString();
      bodySubtext = unpackedData[14].toString();
+     bodyTextColor = unpackedData[15].toString();
+     bodySubtextColor = unpackedData[16].toString();
      initializeChanges();
+
+     uploading = true;
+     displayMenu("javascript-content");
 }
 
 function initializeChanges() {
@@ -116,6 +124,9 @@ function initializeChanges() {
      // bodySubtext
      setText("text");
      setText("subtext");
+     // bodyTextColor
+     // bodySubtextColor
+     reinitializeColors();
 }
 
 function returnToTop() {
@@ -155,6 +166,8 @@ $(".header-item").click(function () {
      }
 });
 
+let allowUpload = true;
+
 function displayMenu(id) {
      $("#" + id).css("opacity", "100%");
      $("#" + id).css("visibility", "visible");
@@ -175,6 +188,22 @@ function displayMenu(id) {
      //Explicit Table visibility
      if(id != "properties-content" && productCount >= 1) $("table").css("opacity", "0%").css("visibility", "hidden");
      if(id == "properties-content" && productCount >= 1) $("table").css("opacity", "100%").css("visibility", "visible");
+
+     //Explicit Javascript Alert visiblity
+     if(id != "javascript-content" && uploading == true) $("#upload-complete").css("opacity", "0%").css("visibility", "hidden");
+     if(id == "javascript-content" && uploading == false) $("#upload-complete").css("opacity", "0%").css("visibility", "hidden");
+     if(id == "javascript-content" && uploading == true) {
+          $("#upload-complete").css("opacity", "100%").css("visibility", "visible");
+          
+          if(uploading == true && allowUpload == true) {
+               uploading = false;
+               allowUpload = false;
+               setTimeout(function() {
+                    $("#upload-complete").css("opacity", "0%").css("visibility", "hidden");
+                    allowUpload = true;
+               }, 1500);
+          }
+     }
 }
 
 function displaySelections(event) {
@@ -496,6 +525,40 @@ function displaySelections(event) {
           $(submitButton).attr("onclick", "setText('subtext')");
           submitButton.id = "submit-button";
           $("#selections").append(submitButton);
+     } else if (event == "output11") {
+          //Body Text Color
+          let buttonContainer = document.createElement("input");
+          $(buttonContainer).addClass("selections-button JS-REMOVABLE");
+          $(buttonContainer).css("width", "calc((100% - 10%) / 1)")
+          $(buttonContainer).html("");
+          $(buttonContainer).attr("placeholder", "Type hex Value Here");
+          $(buttonContainer).attr("type", "text");
+          buttonContainer.id = "body-text-color-input-box";
+          $("#selections").append(buttonContainer);
+
+          let submitButton = document.createElement("div");
+          $(submitButton).addClass("submit-button JS-REMOVABLE");
+          $(submitButton).html("Submit");
+          $(submitButton).attr("onclick", "checkColorValidity($('#body-text-color-input-box').val(), 'body-text-color')");
+          submitButton.id = "submit-button";
+          $("#selections").append(submitButton);
+     } else if (event == "output12") {
+          //Body Subtext Color
+          let buttonContainer = document.createElement("input");
+          $(buttonContainer).addClass("selections-button JS-REMOVABLE");
+          $(buttonContainer).css("width", "calc((100% - 10%) / 1)")
+          $(buttonContainer).html("");
+          $(buttonContainer).attr("placeholder", "Type hex Value Here");
+          $(buttonContainer).attr("type", "text");
+          buttonContainer.id = "body-subtext-color-input-box";
+          $("#selections").append(buttonContainer);
+
+          let submitButton = document.createElement("div");
+          $(submitButton).addClass("submit-button JS-REMOVABLE");
+          $(submitButton).html("Submit");
+          $(submitButton).attr("onclick", "checkColorValidity($('#body-subtext-color-input-box').val(), 'body-subtext-color')");
+          submitButton.id = "submit-button";
+          $("#selections").append(submitButton);
      }
 }
 
@@ -615,6 +678,7 @@ let colorAmount = 0;
 let colorPass = false;
 
 function checkColorValidity(inputColor, element) {
+     colorPass = false;
      let acceptedCharacters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"];
      //Check if hex syntax is correct
      for (i = 1; i < inputColor.length; i++) {
@@ -653,7 +717,15 @@ function checkColorValidity(inputColor, element) {
                headerTitleColor = inputColor;
                $("#text-output5").html(inputColor);
                $("#preview-body-header-title").css("color", headerTitleColor);
-          } //Else for other color checkings
+          } else if(element == "body-text-color") {
+               bodyTextColor = inputColor;
+               $("#text-output11").html(inputColor);
+               $("#preview-body-body-text").css("color", bodyTextColor);
+          } else if(element == "body-subtext-color") {
+               bodySubtextColor = inputColor;
+               $("#text-output12").html(inputColor);
+               $("#preview-body-body-subtext").css("color", bodySubtextColor);
+          }
           selectVis(0);
           removeChilds();
      }
@@ -945,4 +1017,9 @@ function createProduct(action) {
 
 function numberWithCommas(x) {
      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function reinitializeColors() {
+     $("#preview-body-body-text").css("color", bodyTextColor);
+     $("#preview-body-body-subtext").css("color", bodySubtextColor);
 }

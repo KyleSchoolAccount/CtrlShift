@@ -104,9 +104,19 @@
                <h3 class="text" id="text-output9">Not Set</h3>
           </div>
           <div class="content-item">
+               <h3 class="text"><b>Body Text Color</b>:</h3>
+               <div class="button" onclick="displaySelections('output11')">Input</div>
+               <h3 class="text" id="text-output11">#000000</h3>
+          </div>
+          <div class="content-item">
                <h3 class="text"><b>Body Subtext</b>:</h3>
                <div class="button" onclick="displaySelections('output10')">Input</div>
                <h3 class="text" id="text-output10">Not Set</h3>
+          </div>
+          <div class="content-item">
+               <h3 class="text"><b>Body Subtext Color</b>:</h3>
+               <div class="button" onclick="displaySelections('output12')">Input</div>
+               <h3 class="text" id="text-output12">#000000</h3>
           </div>
           <!-- <h2 class="content-subtitle">Product Styling</h2> -->
           <!-- <h2 class="content-subtitle">Footer</h2> -->
@@ -161,9 +171,16 @@
                <p><b>Header>Header Title Color</b>: This setting changes your headers website name (if enabled). This selection only allows for hex codes to be inputted, for example: "#ff0000" is the color red. You can use this tool to find hex codes: <a href="https://htmlcolorcodes.com/color-picker/" target="_blank">https://htmlcolorcodes.com/color-picker/</a> (#000000 by default)</p>
                <p><b>Header>Header Title</b>: This setting removes or adds the website name to your header. If you have a logo, sometimes it contains the name of your brand inside of it, in which case you can remove the automatically generated one. (Enabled by default)</p>
                <p><b>Header>Body Text</b>: This is the main text shown when first visiting your website, so write something eye catching here. It is suggested to keep this piece of text short, and make your subtext a little more informative.</p>
+               <p><b>Header>Body Text Color</b>: This input allows for you to customize the color of the "Body Text" element on your webstore. The input allows only for hex values - refer above for a tool used to generate hex codes.</p>
                <p><b>Header>Body Subtext</b>: This is the subtext of the website, located right underneath the primary body text. You can add important details about what your business does, or whatever you want to tell consumers while navigating.</p>
+               <p><b>Header>Body Subtext Color</b>: This input allows for you to customize the color of the "Body Subext" element on your webstore. The input allows only for hex values - refer above for a tool used to generate hex codes.</p>
                <h3><span class="material-icons">dashboard_customize</span> Store Properties</h3>
                <p>This section of the editor is dedicated to the creation of products for your store. Keep reading to learn how to display your products to consumers through your website!</p>
+               <p><b>Creating a product</b>: To make a product for your webstore, within the "Store Properties" tab of the editor, there is a button located in the top right, labeled "<b><span class="material-icons quoted-material-icons">add</span> Add Another Product</b>". Clicking this button will prompt 3 different input menus sequentially; Refer below for the requirements of each prompt.</p>
+               <p><b>Product Name</b>: You may input your products name in this box, it must contain at least 3 characters to be accepted.</p>
+               <p><b>Product Image</b>: Your products image should be inserted in this box, this input only excepts links ending in <b>.png</b>, <b>.jpg</b>, <b>.jpeg</b>, and <b>.gif</b>. You can upload images to a seperate online server using a service such as <a href="https://imgur.com/upload" target="_blank">imgur.com</a>.</p>
+               <p><b>Product Price</b>: The cost of your product can be inputted in this box. Whatever is inputted must be a positive numerical value, meaning currency symbols will be applied on your webstore automatically. You may use "0" in this box if you want to display a product's price as free.</p>
+               <p>Upon entering all values into their specified input boxes, a product will be generated on your webstore displaying the name, image, and price.</p>
           </div>
      </div>
      <div id="javascript-content" class="content">
@@ -182,6 +199,7 @@
                <h3 class="javascript-content-text"><b>Retrieve from Cookies </b>
                     <div class="javascript-content-button">Retrieve</div>
                </h3> -->
+               <div id="upload-complete">Upload Complete!</div>
           </div>
      </div>
      <div id="php-content" class="content">

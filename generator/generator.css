@@ -634,7 +634,34 @@ td {
      text-align: center;
 }
 
+#upload-complete {
+     width: 95vw;
+     height: 50px;
+     position: fixed;
+     bottom: 10px;
+     left: calc(50% + 25px);
+     transform: translateX(-50%);
+     background-color: rgb(76, 255, 60);
+     border-radius: 20px;
+     text-align: center;
+     color: white;
+     font-size: 25px;
+     display: flex;
+     flex-direction: row;
+     flex-wrap: nowrap;
+     justify-content: center;
+     align-items: center;
+     align-content: center;
+     user-select: none;
+     transition: width 0.5s ease, left 0.5s ease, visibility 0.5s ease, opacity 0.5s ease;
+     z-index: 10;
+     visibility: hidden;
+     opacity: 0%;
+}
 
+#help-content-flex-container .quoted-material-icons {
+     font-size: 30px !important;
+}
 
 
 
