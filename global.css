@@ -94,3 +94,107 @@ a i:hover {
 #footer-flex-container1 a {
      text-decoration: none;
 }
+
+/* Mobile initial styling */
+#header-mobile {
+     background-color: transparent;
+     height: 90px;
+     width: 100%;
+     overflow: hidden;
+     position: fixed;
+     z-index: 1000;
+     transition-duration: 0.4s;
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     align-items: center;
+     visibility: hidden;
+}
+
+#logo-mobile {
+     width: 100px;
+     margin-left: 15px;
+     margin-top: 2px;
+     transition-duration: 0.4s;
+     position: relative;
+     transition: width 0.25s ease, margin-top 0.25s ease, filter 0.75s ease;
+     user-select: none;
+}
+
+.icon-1, .icon-2, .icon-3 {
+    position: absolute;
+    left: 20%;
+    top: 50%;
+    width: 32px;
+    height: 3px;
+    background-color: white;
+    transition: all 400ms cubic-bezier(.84,.06,.52,1.8);
+}
+
+.icon-1 {
+     transform: translateY(-8px);
+     animation-delay: 100ms;
+}
+
+.icon-3 {
+     transform: translateY(8px);
+     animation-delay: 250ms;
+}
+
+.hamburger-icon {
+     position: absolute;
+     height: 60px;
+     width: 60px;
+     top: 50%;
+     right: 15px;
+     z-index: 1000;
+     cursor: pointer;
+     transition: all 0.2s ease-in-out;
+     width: 50px;
+     height: 50px;
+     overflow: hidden;
+     transform: translateY(-50%);
+}
+
+#header-mobile-tabs {
+     width: 100%;
+     height: 100%;
+     background-color: rgba(255, 255, 255, 0.9);
+     position: fixed;
+     top: 0;
+     left: 0;
+     z-index: 999;
+     visibility: hidden;
+     opacity: 0%;
+     transform: translateX(-100%);
+     transition: transform 0.75s ease, visibility 0.75s ease, opacity 0.75s ease;
+}
+
+#header-mobile-tabs-container {
+     position: relative;
+     top: 120px;
+     display: flex;
+     flex-direction: column;
+     flex-wrap: nowrap;
+     justify-content: flex-start;
+     align-items: flex-start;
+     gap: 75px;
+}
+
+.header-mobile-tab {
+     color: black;
+     font-size: 50px;
+     font-weight: bold;
+     user-select: none;
+     cursor: pointer;
+     width: 100%;
+     text-align: center;
+}
+
+.active-mobile {
+     background-color: black !important;
+}
+
+.active-logo-mobile {
+     filter: invert(1) !important;
+}

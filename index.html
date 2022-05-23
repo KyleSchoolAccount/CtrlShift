@@ -10,7 +10,7 @@
      <link rel="stylesheet" href="global.css">
      <link rel="stylesheet" href="index.css">
      <!-- For other device resolutions -->
-     <link rel="stylesheet" href="resolutions/index.css">
+     <link rel="stylesheet" href="resolutions/index-resolutions.css">
      <!-- Generating a favicon from logo -->
      <link rel="icon" type="image/png" href="images/logo-gray.png" id="light-scheme-icon" />
      <!-- Title of webpage -->
@@ -25,6 +25,21 @@
           <a href="generator/generator.html" class="translate-auxiliary page"><h1>Create a Webstore</h1></a>
           <!-- <a href="published/published.html" class="translate-auxiliary page"><h1>Published Webstores</h1></a> -->
           <a href="about/about.html" class="translate-auxiliary page"><h1>About Us</h1></a>
+     </div>
+     <div id="header-mobile">
+          <a href="index.html"><img src="images/logo.png" id="logo-mobile" alt="Webstore Builder Logo"></a>
+          <div class="hamburger-icon" id="icon" onclick="mobileNav()">
+               <div class="icon-1" id="a"></div>
+               <div class="icon-2" id="b"></div>
+               <div class="icon-3" id="c"></div>
+          </div>
+     </div>
+     <div id="header-mobile-tabs">
+          <div id="header-mobile-tabs-container">
+               <div class="header-mobile-tab" onclick="redir('index.html')">Home</div>
+               <div class="header-mobile-tab" onclick="redir('generator/generator.html')">Create a Webstore</div>
+               <div class="header-mobile-tab" onclick="redir('about/about.html')">About Us</div>
+          </div>
      </div>
      <div class="page-content">
           <div id="welcome-container">

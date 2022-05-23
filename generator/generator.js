@@ -11,20 +11,33 @@ let headerFont = "Montserrat";
 let headerTitleColorSet = false;
 let headerTitleColor = "#000000";
 let headerTitle = "enabled";
-let bodyBackgroundType = "solid";
+let bodyBackgroundColor = "";
 let bodyBackgroundProperties = "disabled";
 let bodyText = "Welcome to your demo store!";
 let bodySubtext = 'You can customize nearly anything you wish by heading over to the Customize Styling section and Store Properties tabs in the menu. This body of text is called the "Body Subtext" in the Customize Styling tab, at which can be edited to whatever you would like. Happy editing!';
 let bodyTextColor = "black";
 let bodySubtextColor = "black";
+let footer = "enabled";
+let address = "enabled";
+let addressValue = "4 Penn Center, Philadelphia, PA 19103";
+let social = "Twitter";
+let socialValue = "";
+
 //Store data in a javascript form
-let data = [logo, "\n", logoAcceptable, "\n", imageSet, "\n", websiteNameSet, "\n", websiteName, "\n", headerBorder, "\n", headerFontVal, "\n", headerFont, "\n", headerTitleColorSet, "\n", headerTitleColor, "\n", headerTitle, "\n", bodyBackgroundType, "\n", bodyBackgroundProperties, "\n", bodyText, "\n", bodySubtext, "\n", bodyTextColor, "\n", bodySubtextColor, "\n", "Version 1.0"];
+let data;
 let uploadedData;
 let unpackedData = [];
 let unpackedDataIndex = 0;
 
 function downloadTxt() {
-     data = [logo, "\n", logoAcceptable, "\n", imageSet, "\n", websiteNameSet, "\n", websiteName, "\n", headerBorder, "\n", headerFontVal, "\n", headerFont, "\n", headerTitleColorSet, "\n", headerTitleColor, "\n", headerTitle, "\n", bodyBackgroundType, "\n", bodyBackgroundProperties, "\n", bodyText, "\n", bodySubtext, "\n", bodyTextColor, "\n", bodySubtextColor, "\n", "Version 1.0"];
+     data = [logo, "\n", logoAcceptable, "\n", imageSet, "\n", websiteNameSet, "\n", websiteName, "\n", headerBorder, "\n", headerFontVal, "\n", headerFont, "\n", headerTitleColorSet, "\n", headerTitleColor, "\n", headerTitle, "\n", bodyBackgroundColor, "\n", bodyText, "\n", bodySubtext, "\n", bodyTextColor, "\n", bodySubtextColor, "\n", footer, "\n", address, "\n", addressValue, "\n", social, "\n", socialValue, "\n", "Version 1.0.0"];
+     // if(productData.length != 0) {
+     //      data += ",";
+     //      for(i = 0; i < productData.length; i++) {
+     //           data += productData[i].name + "|||" + productData[i].image + "|||" + productData[i].price + "|||";
+     //      }
+     //      data += ", \n,";
+     // }
      let hiddenElement = document.createElement('a');
      hiddenElement.href = 'data:attachment/text,' + encodeURIComponent(data);
      hiddenElement.target = '_blank';
@@ -42,7 +55,7 @@ function upload() {
           uploadedData = textFromFileLoaded;
           unpackedDataIndex = 0;
           unpileUploadedData();
-          // console.log(unpackedData);
+          //console.log(unpackedData); Check uncompiled data
           recompileVariables();
      };
      fileReader.readAsText(fileToLoad, "UTF-8");
@@ -69,12 +82,36 @@ function recompileVariables() {
      headerTitleColorSet = $.parseJSON(unpackedData[8].toLowerCase());
      headerTitleColor = unpackedData[9].toString();
      headerTitle = unpackedData[10].toString();
-     bodyBackgroundType = unpackedData[11].toString();
-     bodyBackgroundProperties = unpackedData[12].toString(); //Disabled
-     bodyText = unpackedData[13].toString();
-     bodySubtext = unpackedData[14].toString();
-     bodyTextColor = unpackedData[15].toString();
-     bodySubtextColor = unpackedData[16].toString();
+     bodyBackgroundColor = unpackedData[11].toString();
+     bodyText = unpackedData[12].toString();
+     bodySubtext = unpackedData[13].toString();
+     bodyTextColor = unpackedData[14].toString();
+     bodySubtextColor = unpackedData[15].toString();
+     footer = unpackedData[16].toString();
+     address = unpackedData[17].toString();
+     addressValue = unpackedData[18].toString();
+     social = unpackedData[19].toString();
+     socialValue = unpackedData[20].toString();
+     // unpackedData21 = unpackedData[21].toString();
+     // console.log(unpackedData21);
+     // while(unpackedData21.includes("|||")) {
+     //      unpackedName = unpackedData21.substring(0, unpackedData21.indexOf("|||"));
+     //      unpackedData21 = unpackedData21.substring(unpackedData21.indexOf("|||") + 3);
+     //      unpackedImage = unpackedData21.substring(0, unpackedData21.indexOf("|||"));
+     //      unpackedData21 = unpackedData21.substring(unpackedData21.indexOf("|||") + 3);
+     //      unpackedPrice = unpackedData21.substring(0, unpackedData21.indexOf("|||"));
+     //      unpackedData21 = unpackedData21.substring(unpackedData21.indexOf("|||") + 3);
+
+     //      productData[productCount].push({
+     //           name: unpackedName,
+     //           image: unpackedImage,
+     //           price: unpackedPrice
+     //      });
+     //      console.log("DID A LOOP");
+
+     //      productCount++;
+     // }
+     // console.log(productData);
      initializeChanges();
 
      uploading = true;
@@ -118,15 +155,26 @@ function initializeChanges() {
      $("#preview-body-header-title").css("color", headerTitleColor);
      // headerTitle
      setHeaderTitleStatus();
-     // bodyBackgroundType
-     // bodyBackgroundProperties
+     // bodyBackgroundColor
+     if(bodyBackgroundColor != "") {
+          $("#text-output8").html("Color 1: " + bodyBackgroundColor.substring(0, 7) + " | Color 2: " + bodyBackgroundColor.substring(8));
+          $("#preview-body-body-image").css("background-image", "linear-gradient(" + bodyBackgroundColor + ")");
+     }
      // bodyText
      // bodySubtext
-     setText("text");
-     setText("subtext");
+     setTextFromUpload("text");
+     setTextFromUpload("subtext");
      // bodyTextColor
      // bodySubtextColor
      reinitializeColors();
+     // footer
+     // address
+     // addressValue
+     // social
+     // socialValue
+     setFooterStatus();
+     // products
+     // reinitializeProducts();
 }
 
 function returnToTop() {
@@ -169,8 +217,7 @@ $(".header-item").click(function () {
 let allowUpload = true;
 
 function displayMenu(id) {
-     $("#" + id).css("opacity", "100%");
-     $("#" + id).css("visibility", "visible");
+     $("#" + id).css("opacity", "100%").css("visibility", "visible").css("overflow-y", "initial");
 
      let pages = [
           "style-content",
@@ -182,12 +229,15 @@ function displayMenu(id) {
      ];
 
      for(i = 0; i < pages.length; i++) {
-          if(id != pages[i]) $("#" + pages[i]).css("opacity", "0%").css("visibility", "hidden");
+          if(id != pages[i]) $("#" + pages[i]).css("opacity", "0%").css("visibility", "hidden").css("overflow-y", "hidden");
      }
 
      //Explicit Table visibility
      if(id != "properties-content" && productCount >= 1) $("table").css("opacity", "0%").css("visibility", "hidden");
      if(id == "properties-content" && productCount >= 1) $("table").css("opacity", "100%").css("visibility", "visible");
+
+     //Explicit View overflow properties
+     $('body').css('overflow-y', 'auto')
 
      //Explicit Javascript Alert visiblity
      if(id != "javascript-content" && uploading == true) $("#upload-complete").css("opacity", "0%").css("visibility", "hidden");
@@ -213,7 +263,7 @@ function displaySelections(event) {
           //Header Logo
           let buttonContainer = document.createElement("input");
           $(buttonContainer).addClass("selections-button JS-REMOVABLE");
-          $(buttonContainer).css("width", "calc((100% - 10%) / 1)")
+          $(buttonContainer).css("width", "calc((100% - 10%) / 1)");
           $(buttonContainer).html("");
           $(buttonContainer).attr("placeholder", "Type URL Here");
           $(buttonContainer).attr("type", "text");
@@ -245,7 +295,7 @@ function displaySelections(event) {
           //Header-Border
           let buttonContainer = document.createElement("div");
           $(buttonContainer).addClass("selections-button centered-selections-button JS-REMOVABLE");
-          $(buttonContainer).css("width", "calc((100% - 10%) / 2)")
+          $(buttonContainer).css("width", "calc((100% - 10%) / 2)");
           $(buttonContainer).html("Disable");
           $(buttonContainer).click(function () {
                headerBorder = "disabled";
@@ -255,7 +305,7 @@ function displaySelections(event) {
           buttonContainer.id = "header-border-box";
           let buttonContainer2 = document.createElement("div");
           $(buttonContainer2).addClass("selections-button centered-selections-button JS-REMOVABLE");
-          $(buttonContainer2).css("width", "calc((100% - 10%) / 2)")
+          $(buttonContainer2).css("width", "calc((100% - 10%) / 2)");
           $(buttonContainer2).html("Enable");
           $(buttonContainer2).click(function () {
                headerBorder = "enabled";
@@ -274,7 +324,7 @@ function displaySelections(event) {
           //Website Name
           let buttonContainer = document.createElement("input");
           $(buttonContainer).addClass("selections-button JS-REMOVABLE");
-          $(buttonContainer).css("width", "calc((100% - 10%) / 1)")
+          $(buttonContainer).css("width", "calc((100% - 10%) / 1)");
           $(buttonContainer).html("");
           $(buttonContainer).attr("placeholder", "Type Text Here");
           $(buttonContainer).attr("type", "text");
@@ -293,7 +343,7 @@ function displaySelections(event) {
           //Header Font
           let buttonContainer = document.createElement("div");
           $(buttonContainer).addClass("selections-button centered-selections-button JS-REMOVABLE");
-          $(buttonContainer).css("width", "calc((100% - 10%) / 6)")
+          $(buttonContainer).css("width", "calc((100% - 10%) / 6)");
           $(buttonContainer).html("Montserrat");
           $(buttonContainer).click(function () {
                headerFontVal = "'Montserrat', sans-serif";
@@ -308,7 +358,7 @@ function displaySelections(event) {
           buttonContainer.id = "header-font-box";
           let buttonContainer2 = document.createElement("div");
           $(buttonContainer2).addClass("selections-button centered-selections-button JS-REMOVABLE");
-          $(buttonContainer2).css("width", "calc((100% - 10%) / 6)")
+          $(buttonContainer2).css("width", "calc((100% - 10%) / 6)");
           $(buttonContainer2).html("Overpass");
           $(buttonContainer2).click(function () {
                headerFontVal = "'Overpass', sans-serif";
@@ -323,7 +373,7 @@ function displaySelections(event) {
           buttonContainer2.id = "header-font-box2";
           let buttonContainer3 = document.createElement("div");
           $(buttonContainer3).addClass("selections-button centered-selections-button JS-REMOVABLE");
-          $(buttonContainer3).css("width", "calc((100% - 10%) / 6)")
+          $(buttonContainer3).css("width", "calc((100% - 10%) / 6)");
           $(buttonContainer3).html("Tulpen One");
           $(buttonContainer3).click(function () {
                headerFontVal = "'Tulpen One', cursive";
@@ -338,7 +388,7 @@ function displaySelections(event) {
           buttonContainer3.id = "header-font-box3";
           let buttonContainer4 = document.createElement("div");
           $(buttonContainer4).addClass("selections-button centered-selections-button JS-REMOVABLE");
-          $(buttonContainer4).css("width", "calc((100% - 10%) / 6)")
+          $(buttonContainer4).css("width", "calc((100% - 10%) / 6)");
           $(buttonContainer4).html("Kristi");
           $(buttonContainer4).click(function () {
                headerFontVal = "'Kristi', cursive";
@@ -353,7 +403,7 @@ function displaySelections(event) {
           buttonContainer4.id = "header-font-box4";
           let buttonContainer5 = document.createElement("div");
           $(buttonContainer5).addClass("selections-button centered-selections-button JS-REMOVABLE");
-          $(buttonContainer5).css("width", "calc((100% - 10%) / 6)")
+          $(buttonContainer5).css("width", "calc((100% - 10%) / 6)");
           $(buttonContainer5).html("Abel");
           $(buttonContainer5).click(function () {
                headerFontVal = "'Abel', sans-serif";
@@ -368,7 +418,7 @@ function displaySelections(event) {
           buttonContainer5.id = "header-font-box5";
           let buttonContainer6 = document.createElement("div");
           $(buttonContainer6).addClass("selections-button centered-selections-button JS-REMOVABLE");
-          $(buttonContainer6).css("width", "calc((100% - 10%) / 6)")
+          $(buttonContainer6).css("width", "calc((100% - 10%) / 6)");
           $(buttonContainer6).html("Poppins");
           $(buttonContainer6).click(function () {
                headerFontVal = "'Poppins', sans-serif";
@@ -399,7 +449,7 @@ function displaySelections(event) {
           //Header Title Color
           let buttonContainer = document.createElement("input");
           $(buttonContainer).addClass("selections-button JS-REMOVABLE");
-          $(buttonContainer).css("width", "calc((100% - 10%) / 1)")
+          $(buttonContainer).css("width", "calc((100% - 10%) / 1)");
           $(buttonContainer).html("");
           $(buttonContainer).attr("placeholder", "Type hex Value Here");
           $(buttonContainer).attr("type", "text");
@@ -418,7 +468,7 @@ function displaySelections(event) {
           //Header-Border
           let buttonContainer = document.createElement("div");
           $(buttonContainer).addClass("selections-button centered-selections-button JS-REMOVABLE");
-          $(buttonContainer).css("width", "calc((100% - 10%) / 2)")
+          $(buttonContainer).css("width", "calc((100% - 10%) / 2)");
           $(buttonContainer).html("Disable");
           $(buttonContainer).click(function () {
                headerTitle = "disabled";
@@ -428,7 +478,7 @@ function displaySelections(event) {
           buttonContainer.id = "header-border-box";
           let buttonContainer2 = document.createElement("div");
           $(buttonContainer2).addClass("selections-button centered-selections-button JS-REMOVABLE");
-          $(buttonContainer2).css("width", "calc((100% - 10%) / 2)")
+          $(buttonContainer2).css("width", "calc((100% - 10%) / 2)");
           $(buttonContainer2).html("Enable");
           $(buttonContainer2).click(function () {
                headerTitle = "enabled";
@@ -443,53 +493,38 @@ function displaySelections(event) {
           $(submitButton).attr("onclick", "setHeaderTitleStatus()");
           submitButton.id = "submit-button";
           $("#selections").append(submitButton);
-     } else if (event == "output7") {
-          //Body Background Type
-          let buttonContainer = document.createElement("div");
-          $(buttonContainer).addClass("selections-button centered-selections-button JS-REMOVABLE");
-          $(buttonContainer).css("width", "calc((100% - 10%) / 3)")
-          $(buttonContainer).html("Solid Color");
-          $(buttonContainer).click(function () {
-               bodyBackgroundType = "solid";
-               $(buttonContainer).addClass("active-selections-button");
-               $(buttonContainer2).removeClass("active-selections-button");
-               $(buttonContainer3).removeClass("active-selections-button");
-          });
-          buttonContainer.id = "header-border-box";
-          let buttonContainer2 = document.createElement("div");
-          $(buttonContainer2).addClass("selections-button centered-selections-button JS-REMOVABLE");
-          $(buttonContainer2).css("width", "calc((100% - 10%) / 3)")
-          $(buttonContainer2).html("Gradient");
-          $(buttonContainer2).click(function () {
-               bodyBackgroundType = "gradient";
-               $(buttonContainer2).addClass("active-selections-button");
-               $(buttonContainer).removeClass("active-selections-button");
-               $(buttonContainer3).removeClass("active-selections-button");
-          });
-          buttonContainer2.id = "header-border-box2";
-          let buttonContainer3 = document.createElement("div");
-          $(buttonContainer3).addClass("selections-button centered-selections-button JS-REMOVABLE");
-          $(buttonContainer3).css("width", "calc((100% - 10%) / 3)")
-          $(buttonContainer3).html("Image");
-          $(buttonContainer3).click(function () {
-               bodyBackgroundType = "image";
-               $(buttonContainer3).addClass("active-selections-button");
-               $(buttonContainer).removeClass("active-selections-button");
-               $(buttonContainer2).removeClass("active-selections-button");
-          });
-          buttonContainer3.id = "header-border-box3";
-          $("#selections").append(buttonContainer).append(buttonContainer2).append(buttonContainer3);
+     } else if (event == "output8") {
+          //Body Background Gradient
+          let buttonContainer = document.createElement("input");
+          $(buttonContainer).addClass("selections-button JS-REMOVABLE");
+          $(buttonContainer).css("width", "calc((100% - 10%) / 2)").css("font-size", "200%");
+          $(buttonContainer).html("");
+          $(buttonContainer).attr("placeholder", "Type hex Value Here (Color 1)");
+          $(buttonContainer).attr("type", "text");
+          buttonContainer.id = "body-background-color1-input-box";
+          $("#selections").append(buttonContainer);
+
+          let buttonContainer2 = document.createElement("input");
+          $(buttonContainer2).addClass("selections-button JS-REMOVABLE");
+          $(buttonContainer2).css("width", "calc((100% - 10%) / 2)").css("font-size", "200%");
+          $(buttonContainer2).html("");
+          $(buttonContainer2).attr("placeholder", "Type hex Value Here (Color 2)");
+          $(buttonContainer2).attr("type", "text");
+          buttonContainer2.id = "body-background-color2-input-box";
+          $("#selections").append(buttonContainer2);
+
           let submitButton = document.createElement("div");
           $(submitButton).addClass("submit-button JS-REMOVABLE");
           $(submitButton).html("Submit");
-          $(submitButton).attr("onclick", "setBodyBackgroundType()");
+          //Special case for 2 hex values
+          $(submitButton).attr("onclick", "checkColorValidity($('#body-background-color1-input-box').val(), 'body-background-gradient')");
           submitButton.id = "submit-button";
           $("#selections").append(submitButton);
      } else if (event == "output9") {
           //Body Text
           let buttonContainer = document.createElement("input");
           $(buttonContainer).addClass("selections-button JS-REMOVABLE");
-          $(buttonContainer).css("width", "calc((100% - 10%) / 1)")
+          $(buttonContainer).css("width", "calc((100% - 10%) / 1)");
           if (bodyText != 'Welcome to your demo store!') {
                $(buttonContainer).html(bodyText);
           } else {
@@ -509,7 +544,7 @@ function displaySelections(event) {
           //Body Subtext
           let buttonContainer = document.createElement("input");
           $(buttonContainer).addClass("selections-button JS-REMOVABLE");
-          $(buttonContainer).css("width", "calc((100% - 10%) / 1)")
+          $(buttonContainer).css("width", "calc((100% - 10%) / 1)");
           if (bodySubtext != 'You can customize nearly anything you wish by heading over to the Customize Styling section and Store Properties tabs in the menu. This body of text is called the "Body Subtext" in the Customize Styling tab, at which can be edited to whatever you would like. Happy editing!') {
                $(buttonContainer).html(bodySubtext);
           } else {
@@ -529,7 +564,7 @@ function displaySelections(event) {
           //Body Text Color
           let buttonContainer = document.createElement("input");
           $(buttonContainer).addClass("selections-button JS-REMOVABLE");
-          $(buttonContainer).css("width", "calc((100% - 10%) / 1)")
+          $(buttonContainer).css("width", "calc((100% - 10%) / 1)");
           $(buttonContainer).html("");
           $(buttonContainer).attr("placeholder", "Type hex Value Here");
           $(buttonContainer).attr("type", "text");
@@ -546,7 +581,7 @@ function displaySelections(event) {
           //Body Subtext Color
           let buttonContainer = document.createElement("input");
           $(buttonContainer).addClass("selections-button JS-REMOVABLE");
-          $(buttonContainer).css("width", "calc((100% - 10%) / 1)")
+          $(buttonContainer).css("width", "calc((100% - 10%) / 1)");
           $(buttonContainer).html("");
           $(buttonContainer).attr("placeholder", "Type hex Value Here");
           $(buttonContainer).attr("type", "text");
@@ -557,6 +592,155 @@ function displaySelections(event) {
           $(submitButton).addClass("submit-button JS-REMOVABLE");
           $(submitButton).html("Submit");
           $(submitButton).attr("onclick", "checkColorValidity($('#body-subtext-color-input-box').val(), 'body-subtext-color')");
+          submitButton.id = "submit-button";
+          $("#selections").append(submitButton);
+     } else if (event == "output13") {
+          //Enable/Disable Footer
+          let buttonContainer = document.createElement("div");
+          $(buttonContainer).addClass("selections-button centered-selections-button JS-REMOVABLE");
+          $(buttonContainer).css("width", "calc((100% - 10%) / 2)");
+          $(buttonContainer).html("Disable");
+          $(buttonContainer).click(function () {
+               footer = "disabled";
+               $(buttonContainer).addClass("active-selections-button");
+               $(buttonContainer2).removeClass("active-selections-button");
+          });
+          buttonContainer.id = "footer-enable-box";
+          let buttonContainer2 = document.createElement("div");
+          $(buttonContainer2).addClass("selections-button centered-selections-button JS-REMOVABLE");
+          $(buttonContainer2).css("width", "calc((100% - 10%) / 2)");
+          $(buttonContainer2).html("Enable");
+          $(buttonContainer2).click(function () {
+               footer = "enabled";
+               $(buttonContainer2).addClass("active-selections-button");
+               $(buttonContainer).removeClass("active-selections-button");
+          });
+          buttonContainer2.id = "footer-enable-box2";
+          $("#selections").append(buttonContainer).append(buttonContainer2);
+          let submitButton = document.createElement("div");
+          $(submitButton).addClass("submit-button JS-REMOVABLE");
+          $(submitButton).html("Submit");
+          $(submitButton).attr("onclick", "setFooterStatus()");
+          submitButton.id = "submit-button";
+          $("#selections").append(submitButton);
+     } else if (event == "output14") {
+          //Enable/Disable Address
+          let buttonContainer = document.createElement("div");
+          $(buttonContainer).addClass("selections-button centered-selections-button JS-REMOVABLE");
+          $(buttonContainer).css("width", "calc((100% - 10%) / 2)");
+          $(buttonContainer).html("Disable");
+          $(buttonContainer).click(function () {
+               address = "disabled";
+               $(buttonContainer).addClass("active-selections-button");
+               $(buttonContainer2).removeClass("active-selections-button");
+          });
+          buttonContainer.id = "footer-address-enable-box";
+          let buttonContainer2 = document.createElement("div");
+          $(buttonContainer2).addClass("selections-button centered-selections-button JS-REMOVABLE");
+          $(buttonContainer2).css("width", "calc((100% - 10%) / 2)");
+          $(buttonContainer2).html("Enable");
+          $(buttonContainer2).click(function () {
+               address = "enabled";
+               $(buttonContainer2).addClass("active-selections-button");
+               $(buttonContainer).removeClass("active-selections-button");
+          });
+          buttonContainer2.id = "footer-address-enable-box2";
+          $("#selections").append(buttonContainer).append(buttonContainer2);
+          let submitButton = document.createElement("div");
+          $(submitButton).addClass("submit-button JS-REMOVABLE");
+          $(submitButton).html("Submit");
+          $(submitButton).attr("onclick", "setFooterStatus()");
+          submitButton.id = "submit-button";
+          $("#selections").append(submitButton);
+     } else if (event == "output15") {
+          //Address Value
+          let buttonContainer = document.createElement("input");
+          $(buttonContainer).addClass("selections-button JS-REMOVABLE");
+          $(buttonContainer).css("width", "calc((100% - 10%) / 1)");
+          $(buttonContainer).html("");
+          $(buttonContainer).attr("placeholder", "Type Address Here");
+          $(buttonContainer).attr("type", "text");
+          buttonContainer.id = "footer-address-input-box";
+          $("#selections").append(buttonContainer);
+
+          let submitButton = document.createElement("div");
+          $(submitButton).addClass("submit-button JS-REMOVABLE");
+          $(submitButton).html("Submit");
+          $(submitButton).attr("onclick", "addressValue = $('#footer-address-input-box').val(); setFooterStatus();");
+          submitButton.id = "submit-button";
+          $("#selections").append(submitButton);
+     } else if (event == "output16") {
+          //Enable/Disable Social Media
+          let buttonContainer = document.createElement("div");
+          $(buttonContainer).addClass("selections-button centered-selections-button JS-REMOVABLE");
+          $(buttonContainer).css("width", "calc((100% - 10%) / 4)");
+          $(buttonContainer).html("Disable");
+          $(buttonContainer).click(function () {
+               social = "Disabled";
+               $(buttonContainer).addClass("active-selections-button");
+               $(buttonContainer2).removeClass("active-selections-button");
+               $(buttonContainer3).removeClass("active-selections-button");
+               $(buttonContainer4).removeClass("active-selections-button");
+          });
+          buttonContainer.id = "footer-social-enable-box";
+          let buttonContainer2 = document.createElement("div");
+          $(buttonContainer2).addClass("selections-button centered-selections-button JS-REMOVABLE");
+          $(buttonContainer2).css("width", "calc((100% - 10%) / 4)");
+          $(buttonContainer2).html("Twitter");
+          $(buttonContainer2).click(function () {
+               social = "Twitter";
+               $(buttonContainer2).addClass("active-selections-button");
+               $(buttonContainer).removeClass("active-selections-button");
+               $(buttonContainer3).removeClass("active-selections-button");
+               $(buttonContainer4).removeClass("active-selections-button");
+          });
+          buttonContainer2.id = "footer-address-enable-box2";
+          let buttonContainer3 = document.createElement("div");
+          $(buttonContainer3).addClass("selections-button centered-selections-button JS-REMOVABLE");
+          $(buttonContainer3).css("width", "calc((100% - 10%) / 4)");
+          $(buttonContainer3).html("Facebook");
+          $(buttonContainer3).click(function () {
+               social = "Facebook";
+               $(buttonContainer3).addClass("active-selections-button");
+               $(buttonContainer).removeClass("active-selections-button");
+               $(buttonContainer2).removeClass("active-selections-button");
+               $(buttonContainer4).removeClass("active-selections-button");
+          });
+          buttonContainer3.id = "footer-address-enable-box3";
+          let buttonContainer4 = document.createElement("div");
+          $(buttonContainer4).addClass("selections-button centered-selections-button JS-REMOVABLE");
+          $(buttonContainer4).css("width", "calc((100% - 10%) / 4)");
+          $(buttonContainer4).html("Instagram");
+          $(buttonContainer4).click(function () {
+               social = "Instagram";
+               $(buttonContainer4).addClass("active-selections-button");
+               $(buttonContainer).removeClass("active-selections-button");
+               $(buttonContainer2).removeClass("active-selections-button");
+               $(buttonContainer3).removeClass("active-selections-button");
+          });
+          buttonContainer4.id = "footer-address-enable-box4";
+          $("#selections").append(buttonContainer).append(buttonContainer2).append(buttonContainer3).append(buttonContainer4);
+          let submitButton = document.createElement("div");
+          $(submitButton).addClass("submit-button JS-REMOVABLE");
+          $(submitButton).html("Submit");
+          $(submitButton).attr("onclick", "setFooterStatus()");
+          submitButton.id = "submit-button";
+          $("#selections").append(submitButton);
+     } else if (event == "output17") {
+          //Social Media Tag
+          let buttonContainer = document.createElement("input");
+          $(buttonContainer).addClass("selections-button JS-REMOVABLE");
+          $(buttonContainer).css("width", "calc((100% - 10%) / 1)");
+          $(buttonContainer).html("");
+          $(buttonContainer).attr("placeholder", "Type Social Media Tag Here (Without @ symbol)");
+          $(buttonContainer).attr("type", "text");
+          buttonContainer.id = "footer-social-tag-input-box";
+          $("#selections").append(buttonContainer);
+
+          let submitButton = document.createElement("div");
+          $(submitButton).addClass("submit-button JS-REMOVABLE");
+          $(submitButton).html("Submit");
+          $(submitButton).attr("onclick", "socialValue = $('#footer-social-tag-input-box').val(); setFooterStatus();");
           submitButton.id = "submit-button";
           $("#selections").append(submitButton);
      }
@@ -612,6 +796,7 @@ function getLogo() {
           imageSet = true;
           logo = $("#logo-input-box").val();
           $("#preview-body-header-logo").attr("src", logo);
+          $("#preview-body-footer-logo").attr("src", logo);
           removeChilds();
           $("#text-output1").html("<a href='" + logo + "' target='_blank' style='text-decoration-color: white; color: white;' title='View current logo'>" + logo + "</a>");
           $("#text-output1 a").css("font-family", "Poppins, sans-serif").css("font-weight", "400");
@@ -659,6 +844,7 @@ function setWebsiteName() {
           websiteNameSet = true;
           selectVis(0);
           $("#preview-body-header-title").html(websiteName);
+          $("#preview-body-footer-title").html(websiteName);
           //Add more elements that require the websites name later here
           removeChilds();
           $("#text-output3").html(websiteName);
@@ -725,9 +911,18 @@ function checkColorValidity(inputColor, element) {
                bodySubtextColor = inputColor;
                $("#text-output12").html(inputColor);
                $("#preview-body-body-subtext").css("color", bodySubtextColor);
+          } else if(element == "body-background-gradient") {
+               bodyBackgroundColor = inputColor;
+               checkColorValidity($("#body-background-color2-input-box").val(), "body-background-gradient2");
+          } else if(element == "body-background-gradient2") {
+               bodyBackgroundColor += ", " + inputColor;
+               $("#text-output8").html("Color 1: " + bodyBackgroundColor.substring(0, 7) + " | Color 2: " + bodyBackgroundColor.substring(8));
+               $("#preview-body-body-image").css("background-image", "linear-gradient(" + bodyBackgroundColor + ")");
           }
-          selectVis(0);
-          removeChilds();
+          if(element != "body-background-gradient") {
+               selectVis(0);
+               removeChilds();
+          }
      }
 }
 
@@ -746,10 +941,6 @@ function setHeaderTitleStatus() {
      }
 }
 
-function setBodyBackgroundType() {
-     if (bodyBackgroundType == "solid") {}
-}
-
 function setText(type) {
      if (type == "text") {
           bodyText = $("#body-text-input-box").val();
@@ -764,7 +955,15 @@ function setText(type) {
      removeChilds();
 }
 
-
+function setTextFromUpload(type) {
+     if (type == "text") {
+          $("#preview-body-body-text").html(bodyText);
+          $("#text-output9").html(bodyText);
+     } else if (type == "subtext") {
+          $("#preview-body-body-subtext").html(bodySubtext);
+          $("#text-output10").html(bodySubtext);
+     }
+}
 
 //Product creation
 let productData = [];
@@ -977,9 +1176,13 @@ function createProduct(action) {
                $(productPrice).html("Free " + "<span class='material-icons'>sell</span>");
           } else {
                $(productPrice).html("$" + numberWithCommas(placeholderData[2]) + " <span class='material-icons'>shopping_cart</span>");
-          }//Need to add subscriptions here
+          }//Add subscriptions here in future
           $(productPrice).addClass("shop-item-price");
-          $(productPrice).attr("title", "Add To Cart");
+          if(placeholderData[2] == 0) {
+               $(productPrice).attr("title", "Free");
+          } else {
+               $(productPrice).attr("title", "$" + + numberWithCommas(placeholderData[2]));
+          }
 
           $(productContainer).append(productPrice);
 
@@ -1022,4 +1225,87 @@ function numberWithCommas(x) {
 function reinitializeColors() {
      $("#preview-body-body-text").css("color", bodyTextColor);
      $("#preview-body-body-subtext").css("color", bodySubtextColor);
+     $("#text-output11").html(bodyTextColor);
+     $("#text-output12").html(bodySubtextColor);
+}
+
+function setFooterStatus() {
+     selectVis(0);
+     removeChilds();
+
+     $("#preview-body-footer").remove();
+
+     if (footer == "enabled") {
+          //Initialize new HTML to append as child elements
+          let newFooterHTML = $("#preview-body").html() + "<div id='preview-body-footer'><img src='" + logo + "' id='preview-body-footer-logo' alt='Your customized websites logo'><h2 id='preview-body-footer-title'>" + websiteName + "</h2>";
+
+          if(address == "enabled") newFooterHTML += "<div id='preview-body-footer-location' class='footer-flex'><i class='fa-solid fa-location-dot fa-sm footer-icon' id='location-icon' title='Address' alt='Address'></i><a href='" + adjustAddressLink() + "' target='_blank' id='location-details' class='footer-details'>" + addressValue + "</a></div>";
+
+          if(social != "Disabled") {
+               if(socialValue == "") {
+                    newFooterHTML += "<div id='preview-body-footer-social' class='footer-flex'><i class='" + getSocialMediaIcon() + " fa-sm footer-icon' id='social-icon' title='" + social + "' alt='Social Media'></i><a href='" + getSocialMediaLink() + "' target='_blank' id='social-details' class='footer-details'>@WebstoreBuilder</a></div></div>";
+               } else {
+                    newFooterHTML += "<div id='preview-body-footer-social' class='footer-flex'><i class='" + getSocialMediaIcon() + " fa-sm footer-icon' id='social-icon' title='" + social + "' alt='Social Media'></i><a href='" + getSocialMediaLink() + "' target='_blank' id='social-details' class='footer-details'>@" + socialValue + "</a></div></div>";
+               }
+          }
+
+          $("#preview-body").html(newFooterHTML);
+
+          $("#preview-body-footer-logo").attr("src", logo);
+          $("#text-output13").html("Enabled");
+     } else if (footer == "disabled") {
+          $("#text-output13").html("Disabled");
+     }
+
+     if(address == "enabled") {
+          $("#text-output14").html("Enabled");
+     } else if(address == "disabled") {
+          $("#text-output14").html("Disabled");
+     }
+
+     if(addressValue == "") {
+          $("#text-output15").html("Not Specified");
+     } else {
+          $("#text-output15").html(addressValue);
+     }
+
+     $("#text-output16").html(social);
+     if(socialValue == "") {
+          $("#text-output17").html("@WebstoreBuilder");
+     } else {
+          $("#text-output17").html("@" + socialValue);
+     }
+}
+
+function adjustAddressLink() {
+     let newLink = addressValue;
+     while(newLink.includes(" ") == true) {
+          newLink = newLink.replace(" ", "%20");
+     }
+
+     return "https://www.google.com/maps/search/" + newLink;
+}
+
+function getSocialMediaLink() {
+     if(social == "Twitter") {
+          return "https://www.twitter.com/" + socialValue;
+     } else if(social == "Facebook") {
+          return "https://www.facebook.com/" + socialValue;
+     } else if(social == "Instagram") {
+          return "https://www.instagram.com/" + socialValue;
+     }
+
+     if(social != "disabled" && socialValue == "") {
+          return "https://www." + social + ".com/";
+     }
+}
+
+function getSocialMediaIcon() {
+     if(social == "Twitter") {
+          return "fa-brands fa-twitter";
+     } else if(social == "Facebook") {
+          return "fa-brands fa-facebook-f";
+     } else if(social == "Instagram") {
+          return "fa-brands fa-instagram";
+     }
 }

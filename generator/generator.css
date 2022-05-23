@@ -190,12 +190,11 @@ ul {
 .content-title {
      color: white;
      font-weight: bold;
-     font-size: 250%;
+     font-size: 300%;
      text-align: left;
      margin-top: 30px;
      margin-left: 50px;
-     font-family: 'Abel', sans-serif;
-     text-decoration: underline;
+     font-family: 'Poppins', sans-serif;
 }
 
 .content-subtitle {
@@ -583,7 +582,8 @@ input {
      vertical-align: middle;
      position: fixed;
      top: 10px;
-     right: 10px;
+     right: 17.5px;
+     z-index: 100;
      transition: background-color 0.25s ease, color 0.25s ease;
 }
 
@@ -623,6 +623,7 @@ table {
      transform: translateX(-50%);
      visibility: hidden;
      z-index: 1;
+     border-spacing: 0px;
 } 
 
 th {
@@ -663,11 +664,20 @@ td {
      font-size: 30px !important;
 }
 
+.last-item {
+     padding-bottom: 30px;
+}
 
+.version-icon {
+     user-select: none;
+}
 
-
-
-
+#version {
+     font-size: 17.5px;
+     font-family: 'Poppins', sans-serif;
+     display: inline-flex;
+     user-select: none;
+}
 
 /* Preview body styling (this will be altered in javascript */
 #preview-body-header {
@@ -686,7 +696,7 @@ td {
      border-bottom: 1px black solid;
      z-index: 2;
      transition: width 0.5s ease, transform 0.5s ease;
-     opacity: 98%
+     opacity: 98%;
 }
 
 #preview-body-header-logo {
@@ -792,4 +802,65 @@ td {
      position: relative;
      user-select: none;
      cursor: pointer;
+     max-width: 400px;
+}
+
+#preview-body-footer {
+     width: 100%;
+     height: 200px;
+     position: relative;
+     background-color: white;
+     transition: width 0.5s ease, transform 0.5s ease;
+}
+
+#preview-body-footer-logo {
+     height: 75px;
+     user-select: none;
+     position: relative;
+     top: 20px;
+     left: 50px;
+     display: inline-block;
+}
+
+#preview-body-footer-title {
+     user-select: none;
+     position: relative;
+     top: -7.5px;
+     left: 55px;
+     color: black;
+     display: inline-block;
+}
+
+.footer-flex {
+     position: relative;
+     top: 25px;
+     left: 55px;
+     display: flex;
+     flex-direction: row;
+     justify-content: flex-start;
+     align-items: center;
+     align-content: center;
+     gap: 10px;
+     margin-top: 5px;
+}
+
+.footer-icon {
+     width: 30px;
+     height: 30px;
+     border-radius: 50%;
+     background-color: black;
+     color: white;
+     text-align: center;
+     line-height: 30px !important;
+}
+
+.footer-details {
+     cursor: pointer;
+     transition: color 0.25s ease;
+     text-decoration: none;
+     color: black;
+}
+
+.footer-details:hover {
+     color: #777777;
 }

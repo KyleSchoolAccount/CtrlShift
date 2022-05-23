@@ -1,0 +1,57 @@
+/* Smartphones ( <= 680px ) */
+
+@media (max-width: 680px) {
+     #header {
+          visibility: hidden;
+     }
+
+     #header-mobile {
+          visibility: visible;
+     }
+
+     #welcome-flex-container {
+          padding: 0 25px 0 25px;
+     }
+
+     .welcome-title {
+          font-size: 40px;
+     }
+
+     .welcome-subtitle {
+          font-size: 20px;
+     }
+
+     #flex-container2 {
+          display: inline-block;
+          width: 100%;
+     }
+     
+     #welcome-image2 {
+          width: 100%;
+     }
+
+     #flex-container3 {
+          display: contents;
+     }
+
+     #flex-container4 {
+          visibility: hidden;
+     }
+
+     #footer-flex-container1 {
+          margin-left: 10px;
+          margin-top: -100px;
+     }
+
+     #footer-flex-container2 {
+          visibility: hidden;
+     }
+}
+
+/* Tablets ( <= 900px ) */
+
+@media (max-width: 900px) {
+     /* No different properties from desktop view */
+}
+
+/* Other cases */

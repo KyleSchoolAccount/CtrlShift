@@ -8,11 +8,13 @@
      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
      <link rel="stylesheet" href="../global.css">
      <link rel="stylesheet" href="generator.css">
+     <!-- For other device resolutions -->
+     <link rel="stylesheet" href="../resolutions/generator-resolutions.css">
      <link rel="icon" type="image/png" href="../images/logo-gray.png">
      <title>Webstore Builder | Editor</title>
 </head>
 
-<body>
+<body onload="$('body').css('overflow-y', 'hidden')">
      <aside id="header">
           <div id="header-logo">
                <a href="../index.html">
@@ -64,7 +66,7 @@
           <div class="content-item">
                <h3 class="text"><b>Store Name</b>:</h3>
                <div class="button" onclick="displaySelections('output3')">Input</div>
-               <h3 class="text" id="text-output3">Not Set</h3>
+               <h3 class="text" id="text-output3">Not Specified</h3>
           </div>
           <h2 class="content-subtitle">Header</h2>
           <div class="content-item">
@@ -88,20 +90,15 @@
                <h3 class="text" id="text-output6">Enabled</h3>
           </div>
           <h2 class="content-subtitle">Body</h2>
-          <!-- <div class="content-item">
-               <h3 class="text"><b>Body Background Type</b>:</h3>
-               <div class="button" onclick="displaySelections('output7')">Select</div>
-               <h3 class="text" id="text-output7">Solid Color</h3>
-          </div>
           <div class="content-item">
-               <h3 class="text"><b>Body Background Properties</b>:</h3>
+               <h3 class="text"><b>Body Background Gradient</b>:</h3>
                <div class="button" onclick="displaySelections('output8')">Input</div>
-               <h3 class="text" id="text-output8">Color: #ffffff</h3>
-          </div> -->
+               <h3 class="text" id="text-output8">Color 1: Not Selected | Color 2: Not Selected</h3>
+          </div>
           <div class="content-item">
                <h3 class="text"><b>Body Text</b>:</h3>
                <div class="button" onclick="displaySelections('output9')">Input</div>
-               <h3 class="text" id="text-output9">Not Set</h3>
+               <h3 class="text" id="text-output9">Not Specified</h3>
           </div>
           <div class="content-item">
                <h3 class="text"><b>Body Text Color</b>:</h3>
@@ -111,7 +108,7 @@
           <div class="content-item">
                <h3 class="text"><b>Body Subtext</b>:</h3>
                <div class="button" onclick="displaySelections('output10')">Input</div>
-               <h3 class="text" id="text-output10">Not Set</h3>
+               <h3 class="text" id="text-output10">Not Specified</h3>
           </div>
           <div class="content-item">
                <h3 class="text"><b>Body Subtext Color</b>:</h3>
@@ -119,7 +116,32 @@
                <h3 class="text" id="text-output12">#000000</h3>
           </div>
           <!-- <h2 class="content-subtitle">Product Styling</h2> -->
-          <!-- <h2 class="content-subtitle">Footer</h2> -->
+          <h2 class="content-subtitle">Footer</h2>
+          <div class="content-item">
+               <h3 class="text"><b>Footer</b>:</h3>
+               <div class="button" onclick="displaySelections('output13')">Select</div>
+               <h3 class="text" id="text-output13">Enabled</h3>
+          </div>
+          <div class="content-item">
+               <h3 class="text"><b>Address</b>:</h3>
+               <div class="button" onclick="displaySelections('output14')">Select</div>
+               <h3 class="text" id="text-output14">Enabled</h3>
+          </div>
+          <div class="content-item">
+               <h3 class="text"><b>Address Value</b>:</h3>
+               <div class="button" onclick="displaySelections('output15')">Input</div>
+               <h3 class="text" id="text-output15">4 Penn Center, Philadelphia, PA 19103</h3>
+          </div>
+          <div class="content-item">
+               <h3 class="text"><b>Social Media</b>:</h3>
+               <div class="button" onclick="displaySelections('output16')">Select</div>
+               <h3 class="text" id="text-output16">Twitter</h3>
+          </div>
+          <div class="content-item">
+               <h3 class="text last-item"><b>Social Media Tag</b>:</h3>
+               <div class="button" onclick="displaySelections('output17')">Input</div>
+               <h3 class="text" id="text-output17">@WebstoreBuilder</h3>
+          </div>
      </div>
      <div id="properties-content" class="content">
           <h2 id="properties-add-button" onclick="createProduct(1)"><span class="material-icons">add</span> Add Another Product</h2>
@@ -152,6 +174,20 @@
                          
                     </div>
                </div>
+               <div id="preview-body-footer">
+                    <img src="../images/placeholder-image.png" id="preview-body-footer-logo" alt="Your customized websites logo">
+                    <h2 id="preview-body-footer-title">Website Name not set!</h2>
+
+                    <div id="preview-body-footer-location" class="footer-flex">
+                         <i class="fa-solid fa-location-dot fa-sm footer-icon" id="location-icon" title="Address" alt="Address"></i>
+                         <a href="https://www.google.com/maps/search/4%20Penn%20Center" target="_blank" id="location-details" class="footer-details">4 Penn Center, Philadelphia, PA 19103</a>
+                    </div>
+
+                    <div id="preview-body-footer-social" class="footer-flex">
+                         <i class="fa-brands fa-twitter fa-sm footer-icon" id="social-icon" title="Twitter" alt="Social Media"></i>
+                         <a href="https://www.twitter.com" target="_blank" id="social-details" class="footer-details">@Webstore Builder</a>
+                    </div>
+               </div>
           </div>
           <div id="view-notification">You are in Preview Mode. If you want to save this website's progress, click on the "Save Website" tab. <!--Otherwise, you can publish this website publicly in the "Publish" tab!--><span class="material-icons" id="close-view-notification" onclick="$('#view-notification').css('visibility', 'hidden').css('opacity', '0%')">close</span></div>
      </div>
@@ -164,21 +200,27 @@
                <p>Whenever inputting values in the editor, make sure to click the blue "Submit" button in the selector menu (located in the bottom, and visible when changing properties). Changes will not appear unless the submit button is clicked and the value inputted is valid (the submit button will flash red, signaling if otherwise).</p>
                <h3><span class="material-icons">design_services</span> Customize Styling</h3>
                <p>This section is mainly dedicated to inputting website information, and changing the styles of all elements on your generated webstore.</p>
-               <p><b>Initial Settings>Logo</b>: This setting changes your webstores logo throughout the whole page. This requires a url link to the image (meaning your logo needs to be hosted on the web somewhere else, such as <a href="https://imgur.com/upload" target="_blank">imgur.com</a>), this input only excepts links ending in <b>.png</b>, <b>.jpg</b>, <b>.jpeg</b>, and <b>.gif</b>. For example, a logo link should look like this: <a href="https://i.imgur.com/BaZjxCC.png" target="_blank">https://i.imgur.com/BaZjxCC.png</a>.</p>
+               <p><b>Initial Settings>Logo</b>: This setting changes your webstores logo throughout the whole page. This requires a url link to the image (meaning your logo needs to be hosted on the web somewhere else, such as <a href="https://imgur.com/upload" target="_blank">imgur.com</a>), this input only excepts links ending in <b>.png</b>, <b>.jpg</b>, <b>.jpeg</b>, or <b>.gif</b>. For example, a logo link should look like this: <a href="https://i.imgur.com/BaZjxCC.png" target="_blank">https://i.imgur.com/BaZjxCC.png</a>.</p>
                <p><b>Initial Settings>Store Name</b>: This setting changes your webstores name throughout the whole page. This requires an input of text (larger than 3 characters).</p>
                <p><b>Header>Header-Border</b>: This setting changes your headers border. With it enabled, a small black line will divide the border from the rest of the page, making it more distinguishable. Disabling it will remove the border line. (Enabled by default)</p>
                <p><b>Header>Header Font</b>: This setting changes your headers font. There are 6 different font options to choose from. (Montserrat by default)</p>
                <p><b>Header>Header Title Color</b>: This setting changes your headers website name (if enabled). This selection only allows for hex codes to be inputted, for example: "#ff0000" is the color red. You can use this tool to find hex codes: <a href="https://htmlcolorcodes.com/color-picker/" target="_blank">https://htmlcolorcodes.com/color-picker/</a> (#000000 by default)</p>
                <p><b>Header>Header Title</b>: This setting removes or adds the website name to your header. If you have a logo, sometimes it contains the name of your brand inside of it, in which case you can remove the automatically generated one. (Enabled by default)</p>
-               <p><b>Header>Body Text</b>: This is the main text shown when first visiting your website, so write something eye catching here. It is suggested to keep this piece of text short, and make your subtext a little more informative.</p>
-               <p><b>Header>Body Text Color</b>: This input allows for you to customize the color of the "Body Text" element on your webstore. The input allows only for hex values - refer above for a tool used to generate hex codes.</p>
-               <p><b>Header>Body Subtext</b>: This is the subtext of the website, located right underneath the primary body text. You can add important details about what your business does, or whatever you want to tell consumers while navigating.</p>
-               <p><b>Header>Body Subtext Color</b>: This input allows for you to customize the color of the "Body Subext" element on your webstore. The input allows only for hex values - refer above for a tool used to generate hex codes.</p>
+               <p><b>Body>Body Background Gradient</b>: This setting will change the main body background gradient. You will be prompted with 2 input boxes, each for seperate colors in your gradient. Both input boxes will require a hex value; A tool to find desired hex values can be found in the link above. If you would like a solid color, you may input the same hex value for both boxes, which will result in a solid color background. (#707070 and #ffffff by default)</p>
+               <p><b>Body>Body Text</b>: This is the main text shown when first visiting your website, so write something eye catching here. It is suggested to keep this piece of text short, and make your subtext a little more informative.</p>
+               <p><b>Body>Body Text Color</b>: This input allows for you to customize the color of the "Body Text" element on your webstore. The input allows only for hex values - refer above for a tool used to generate hex codes. (#000000 by default)</p>
+               <p><b>Body>Body Subtext</b>: This is the subtext of the website, located right underneath the primary body text. You can add important details about what your business does, or whatever you want to tell consumers while navigating.</p>
+               <p><b>Body>Body Subtext Color</b>: This input allows for you to customize the color of the "Body Subext" element on your webstore. The input allows only for hex values - refer above for a tool used to generate hex codes. (#000000 by default)</p>
+               <p><b>Footer>Footer</b>: This selection will enable/disable the footer of the page depending on what is selected. The footer is the area at the very bottom of the page that allows for you to display a little more information on your business, such as where it's located, and/or a link to your social media page. (Enabled by default)</p>
+               <p><b>Footer>Address</b>: This option enables/disables the address portion of the footer (if you desire or not to display the location online. (Enabled by default)</p>
+               <p><b>Footer>Address Value</b>: You may type the address of your store in this input box. The tool will automatically create a link to Google Maps of the location you entered, and users can be redirected if they click the address in the footer.</p>
+               <p><b>Footer>Social Media</b>: This selection shows 4 different options (3 different social media websites, and 1 disable option). Upon selecting one of the social media options, it will change the icon and redirect link shown in the social media portion of the footer. Selecting Disable will not display and social media tags or links. (Enabled by default)</p>
+               <p><b>Footer>Social Media Tag</b>: This input is where you can type the tag of your desired social media account (don't include the @ symbol of your tag). The tool will automatically create a link to the social media website you entered, and users can be redirected to that page if they click the tag in the footer.</p>
                <h3><span class="material-icons">dashboard_customize</span> Store Properties</h3>
                <p>This section of the editor is dedicated to the creation of products for your store. Keep reading to learn how to display your products to consumers through your website!</p>
                <p><b>Creating a product</b>: To make a product for your webstore, within the "Store Properties" tab of the editor, there is a button located in the top right, labeled "<b><span class="material-icons quoted-material-icons">add</span> Add Another Product</b>". Clicking this button will prompt 3 different input menus sequentially; Refer below for the requirements of each prompt.</p>
                <p><b>Product Name</b>: You may input your products name in this box, it must contain at least 3 characters to be accepted.</p>
-               <p><b>Product Image</b>: Your products image should be inserted in this box, this input only excepts links ending in <b>.png</b>, <b>.jpg</b>, <b>.jpeg</b>, and <b>.gif</b>. You can upload images to a seperate online server using a service such as <a href="https://imgur.com/upload" target="_blank">imgur.com</a>.</p>
+               <p><b>Product Image</b>: Your products image should be inserted in this box, this input only excepts links ending in <b>.png</b>, <b>.jpg</b>, <b>.jpeg</b>, or <b>.gif</b>. You can upload images to a seperate online server using a service such as <a href="https://imgur.com/upload" target="_blank">imgur.com</a>.</p>
                <p><b>Product Price</b>: The cost of your product can be inputted in this box. Whatever is inputted must be a positive numerical value, meaning currency symbols will be applied on your webstore automatically. You may use "0" in this box if you want to display a product's price as free.</p>
                <p>Upon entering all values into their specified input boxes, a product will be generated on your webstore displaying the name, image, and price.</p>
           </div>
@@ -193,6 +235,7 @@
                <h3 class="javascript-content-text"><b>Upload .txt file:</b><input type="file" id="fileToLoad">
                     <div class="javascript-content-button" onclick="upload()">Upload</div>
                </h3>
+               <div id="version"><span class="material-icons version-icon" title="Version">security_update_good</span> Version&nbsp;<b> 1.0.0</b></div>
                <!-- <h3 class="javascript-content-text"><b>Save to Cookies </b>
                     <div class="javascript-content-button">Save</div>
                </h3>
@@ -202,19 +245,21 @@
                <div id="upload-complete">Upload Complete!</div>
           </div>
      </div>
-     <div id="php-content" class="content">
+     <!-- <div id="php-content" class="content">
           <img src="../images/github-pages.png" id="github-pages-image" alt="GitHub Pages Logo">
           <h2 id="php-title">PHP Disabled in GitHub Pages!</h2>
           <h3 class="php-subtitle">Unfortunately, Github Pages does not support the use of backend hosting (PHP and MySQL) so user data is unable to be stored/published.</h3>
           <h3 class="php-subtitle">Thankfully, you can visit <a href="#" class="php-hyperlink">this page</a> to use this same website on a webhost we own, and can host user data on.</h3>
           <h3 class="php-subtitle">Otherwise, you can visit the "Save Website" tab and save your website locally from there.</h3>
-     </div>
+     </div> -->
      <!--Append to container once needed, then revert back to body and remove children elements-->
      <div id="selections"></div>
      <div id="tool-tips-container">
           <!--Place tool-tips in here that will pop up after a certain amount of time in the bottom right-->
      </div>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+     <!-- Font Awesome icons -->
+     <script src="https://kit.fontawesome.com/1df22ca4d1.js" crossorigin="anonymous"></script>
      <script src="generator.js"></script>
      <noscript>You need to enable Javascript in your browser settings to use this tool.</noscript>
 </body>
